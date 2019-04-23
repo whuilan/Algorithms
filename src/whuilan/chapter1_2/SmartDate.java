@@ -31,6 +31,15 @@ public class SmartDate {
         month = m;
         day = d;
     }
+
+    /*解析形如5/22/1998这样的日期*/
+    public SmartDate(String date){
+        String[] dates = date.split("/");
+        month = Integer.parseInt(dates[0]);
+        day = Integer.parseInt(dates[1]);
+        year = Integer.parseInt(dates[2]);
+    }
+
     public String toString(){
         return  year+"年"+month+"月"+day+"日";
     }
@@ -52,7 +61,7 @@ public class SmartDate {
 
     public static void main(String[] args){
         try{
-            SmartDate date = new SmartDate(2019,3,8);
+            SmartDate date = new SmartDate(2019,4,19);
             System.out.print(date+" ");
             System.out.println(date.dayOfWeek());
         }catch (Exception e){
