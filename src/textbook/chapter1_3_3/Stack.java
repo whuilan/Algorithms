@@ -22,4 +22,9 @@ public class Stack<Item> {
         N--;
         return item;
     }
+    /*练习1_3_7 添加一个方法peek()返回栈中最近添加的元素（而不是弹出它）*/
+    public Item peek(){
+        Item item = first.item;
+        return item;
+    }
 }

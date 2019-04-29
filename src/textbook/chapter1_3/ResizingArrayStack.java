@@ -40,6 +40,10 @@ public class ResizingArrayStack<Item> implements Iterable<Item> {
         return t;
     }
 
+    public  int arraySize(){
+        return a.length;
+    }
+
     public Iterator<Item> iterator() {
         return new RerseArrayIterator();
     }
@@ -59,6 +63,12 @@ public class ResizingArrayStack<Item> implements Iterable<Item> {
         }
     }
 
+    public static ResizingArrayStack<String> copy(ResizingArrayStack<String> inputStack){
+        ResizingArrayStack<String> outputStack = new ResizingArrayStack<>();
+        outputStack = inputStack;
+        return outputStack;
+    }
+
     public static void main(String[] args) {
         ResizingArrayStack<String> stack = new ResizingArrayStack<>();
         while (!StdIn.isEmpty()) {
@@ -66,9 +76,16 @@ public class ResizingArrayStack<Item> implements Iterable<Item> {
             if (!s.equals("-")) {
                 stack.push(s);
             } else if (!stack.isEmpty()) {
-                StdOut.print(stack.pop() + " ");
+                // StdOut.print(stack.pop() + " ");
+                stack.pop();
             }
         }
-        StdOut.println("(" + stack.size() + " left on the stack)");
+        for(String l:stack){
+            StdOut.print(l+"");
+        }
+        StdOut.println();
+        StdOut.println("数组大小为："+stack.arraySize());
+        StdOut.println("栈大小为："+stack.size());
+        //StdOut.println("(" + stack.size() + " left on the stack)");
     }
 }

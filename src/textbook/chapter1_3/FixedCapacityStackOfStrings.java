@@ -9,11 +9,12 @@ public class FixedCapacityStackOfStrings {
     public boolean isEmpty(){ return N==0;}
     public int size(){ return N;}
     public void push(String item){
-        a[N]= item;
-        N++;
+        a[N++]= item;
     }
     public String pop(){
-        --N;
-        return a[N];
+        return a[--N];
     }
+
+    /*练习1.3.1 为该类添加一个isFull()方法*/
+    public boolean isFull(){ return N == a.length;}
 }
