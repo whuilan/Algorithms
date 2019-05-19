@@ -13,15 +13,16 @@ public class Queue<Item> {
     }
     public boolean isEmpty(){return first == null;}
     public int size(){return N;}
-    public void push(Item item){
+    public void enqueue(Item item){
         Node oldLast = last;
         last = new Node();
         last.item = item;
+        last.next = null;
         if(isEmpty()) first = last;
         else oldLast.next = last;
         N++;
     }
-    public Item pop(){
+    public Item dequeue(){
         Item item = first.item;
         first = first.next;
         if(isEmpty()) last = null;
@@ -34,9 +35,9 @@ public class Queue<Item> {
         while (!StdIn.isEmpty()){
             String item = StdIn.readString();
             if(!item.equals("-")){
-                queue.push(item);
+                queue.enqueue(item);
             }else if(!StdIn.isEmpty()){
-                StdOut.print(queue.pop()+" ");
+                StdOut.print(queue.dequeue()+" ");
             }
         }
         StdOut.println();

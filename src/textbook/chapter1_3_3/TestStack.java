@@ -2,6 +2,8 @@ package textbook.chapter1_3_3;
 
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
+import whuilan.chapter1_3.Ex19;
+import edu.princeton.cs.algs4.Stack;
 
 public class TestStack {
     public static void main(String[] args){
@@ -16,5 +18,14 @@ public class TestStack {
         }
         StdOut.println();
         StdOut.println("("+stack.size()+")"+"left on the stack");
+//        stack.push("apple");
+//        stack.push("banana");
+//        stack.push("orange");
+//        stack.push("pear");
+//        for(String s:stack){
+//            StdOut.print(s+" ");
+//        }
+//        StdOut.println();
+
     }
 }

@@ -1,5 +1,7 @@
 package textbook.chapter1_3_3;
 
+import whuilan.chapter1_3.Ex19;
+
 public class Stack<Item> {
     private Node first;
     private int N;
@@ -26,5 +28,24 @@ public class Stack<Item> {
     public Item peek(){
         Item item = first.item;
         return item;
+    }
+    /*练习1_3_20 编写一个方法delete()，接受一个int参数k，删除链表的第k个元素（如果它存在的话）*/
+    public void delete(int k){
+        if(k==1){ first=first.next; }
+        if(k==size()) {
+            for(Node x = first; x!=null; x=x.next){
+                if(x.next.next==null){
+                    x.next = null;
+                    break;
+                }
+            }
+        }
+        Node x=first;
+        for(int i=1;i<k;i++){
+            if(i==k-1){
+                x.next = x.next.next;
+            }
+            x = x.next;
+        }
     }
 }
