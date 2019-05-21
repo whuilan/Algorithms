@@ -18,14 +18,5 @@ public class TestStack {
         }
         StdOut.println();
         StdOut.println("("+stack.size()+")"+"left on the stack");
-//        stack.push("apple");
-//        stack.push("banana");
-//        stack.push("orange");
-//        stack.push("pear");
-//        for(String s:stack){
-//            StdOut.print(s+" ");
-//        }
-//        StdOut.println();
-
     }
 }

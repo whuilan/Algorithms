@@ -2,7 +2,10 @@ package textbook.chapter1_3_3;
 
 import whuilan.chapter1_3.Ex19;
 
-public class Stack<Item> {
+import java.util.Iterator;
+import java.util.ListIterator;
+
+public class Stack<Item> implements Iterable<Item>{
     private Node first;
     private int N;
     private class Node{
@@ -24,6 +27,21 @@ public class Stack<Item> {
         N--;
         return item;
     }
+    public Iterator<Item> iterator(){
+        return  new ListIterator();
+    }
+    private class ListIterator implements Iterator<Item>{
+        private Node current = first;
+        public boolean hasNext(){
+            return current != null;
+        }
+        public Item next(){
+            Item item = current.item;
+            current = current.next;
+            return item;
+        }
+        public void remove(){}
+    }
     /*练习1_3_7 添加一个方法peek()返回栈中最近添加的元素（而不是弹出它）*/
     public Item peek(){
         Item item = first.item;
@@ -31,21 +49,15 @@ public class Stack<Item> {
     }
     /*练习1_3_20 编写一个方法delete()，接受一个int参数k，删除链表的第k个元素（如果它存在的话）*/
     public void delete(int k){
-        if(k==1){ first=first.next; }
-        if(k==size()) {
-            for(Node x = first; x!=null; x=x.next){
-                if(x.next.next==null){
-                    x.next = null;
-                    break;
-                }
-            }
-        }
-        Node x=first;
+        if (k < 0 || k>size() || first == null) return;
+        if(k==1){ first = first.next; }
+        Node current = first;
         for(int i=1;i<k;i++){
             if(i==k-1){
-                x.next = x.next.next;
+                current.next = current.next.next;
+                break;
             }
-            x = x.next;
+            current = current.next;
         }
     }
 }
