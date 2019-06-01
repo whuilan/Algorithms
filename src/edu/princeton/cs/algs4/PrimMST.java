@@ -2,7 +2,7 @@
  *  Compilation:  javac PrimMST.java
  *  Execution:    java PrimMST filename.txt
  *  Dependencies: EdgeWeightedGraph.java Edge.java Queue.java
- *                IndexMinPQ.java UF.java In.java StdOut.java
+ *                IndexMinPQ.java QuickFindUF.java In.java StdOut.java
  *  Data files:   https://algs4.cs.princeton.edu/43mst/tinyEWG.txt
  *                https://algs4.cs.princeton.edu/43mst/mediumEWG.txt
  *                https://algs4.cs.princeton.edu/43mst/largeEWG.txt

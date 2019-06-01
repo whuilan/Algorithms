@@ -1,6 +1,6 @@
 /******************************************************************************
- *  Compilation:  javac UF.java
- *  Execution:    java UF < input.txt
+ *  Compilation:  javac QuickFindUF.java
+ *  Execution:    java QuickFindUF < input.txt
  *  Dependencies: StdIn.java StdOut.java
  *  Data files:   https://algs4.cs.princeton.edu/15uf/tinyUF.txt
  *                https://algs4.cs.princeton.edu/15uf/mediumUF.txt
@@ -8,7 +8,7 @@
  *
  *  Weighted quick-union by rank with path compression by halving.
  *
- *  % java UF < tinyUF.txt
+ *  % java QuickFindUF < tinyUF.txt
  *  4 3
  *  3 8
  *  6 5
@@ -25,7 +25,7 @@ package edu.princeton.cs.algs4;
 
 
 /**
- *  The {@code UF} class represents a <em>union–find data type</em>
+ *  The {@code QuickFindUF} class represents a <em>union–find data type</em>
  *  (also known as the <em>disjoint-sets data type</em>).
  *  It supports the <em>union</em> and <em>find</em> operations,
  *  along with a <em>connected</em> operation for determining whether

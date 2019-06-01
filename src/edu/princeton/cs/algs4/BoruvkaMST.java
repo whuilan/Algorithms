@@ -2,7 +2,7 @@
  *  Compilation:  javac BoruvkaMST.java
  *  Execution:    java BoruvkaMST filename.txt
  *  Dependencies: EdgeWeightedGraph.java Edge.java Bag.java
- *                UF.java In.java StdOut.java
+ *                QuickFindUF.java In.java StdOut.java
  *  Data files:   https://algs4.cs.princeton.edu/43mst/tinyEWG.txt
  *                https://algs4.cs.princeton.edu/43mst/mediumEWG.txt
  *                https://algs4.cs.princeton.edu/43mst/largeEWG.txt
