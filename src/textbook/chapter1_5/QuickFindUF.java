@@ -53,6 +53,7 @@ public class QuickFindUF {
             StdOut.println(p+" "+q);
         }
         StdOut.println(quickFindUf.count()+" components");
+
     }
 
 }
