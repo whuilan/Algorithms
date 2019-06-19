@@ -21,10 +21,14 @@ public class Merge {
             aux[k] = a[k];
         }
         for(int k=lo;k<=hi;k++){
-            if(i>mid) a[k] = aux[j++];
-            else if(j>hi) a[k] = aux[i++];
-            else if(less(aux[j],aux[i])) a[k]=aux[j++];
-            else a[k] = aux[i++];
+            if(i>mid)
+                a[k] = aux[j++];
+            else if(j>hi)
+                a[k] = aux[i++];
+            else if(less(aux[j],aux[i]))
+                a[k]=aux[j++];
+            else
+                a[k] = aux[i++];
         }
     }
     public static boolean less(Comparable v,Comparable w){
@@ -37,8 +41,9 @@ public class Merge {
         StdOut.println();
     }
     public static void main(String[] args){
-        Integer[] b = {6,4,2,3,1,5,7,0};
-        sort(b);
-        show(b);
+        // Integer[] b = {6,4,2,3,1,5,0};
+        Character[] a = {'A','D','B','C','A','E','G','F'};
+        sort(a);
+        show(a);
     }
 }
