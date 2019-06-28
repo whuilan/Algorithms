@@ -2,6 +2,7 @@ package textbook.chapter2_3;
 
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
+import textbook.chapter2_1.Insertion;
 
 public class Quick {
     public static void sort(Comparable[] a){
@@ -9,7 +10,11 @@ public class Quick {
         sort(a,0,a.length-1);
     }
     public static void sort(Comparable[] a, int lo,int hi){
-        if(hi<=lo) return;
+        // if(hi<=lo) return;
+        if(hi<=lo+10){ // 10是我随便取的
+            Insertion.sort(a,lo,hi);
+            return;
+        }
         int j = partition(a,lo,hi);
         sort(a,lo,j-1);
         sort(a,j+1,hi);

@@ -1,9 +1,6 @@
 package textbook.chapter1_3_3;
 
-import whuilan.chapter1_3.Ex19;
-
 import java.util.Iterator;
-import java.util.ListIterator;
 
 public class Stack<Item> implements Iterable<Item>{
     private Node first;
