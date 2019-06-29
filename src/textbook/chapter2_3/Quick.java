@@ -5,16 +5,17 @@ import edu.princeton.cs.algs4.StdRandom;
 import textbook.chapter2_1.Insertion;
 
 public class Quick {
+    private static int exchNum;
     public static void sort(Comparable[] a){
-        StdRandom.shuffle(a);
+        // StdRandom.shuffle(a);
         sort(a,0,a.length-1);
     }
     public static void sort(Comparable[] a, int lo,int hi){
-        // if(hi<=lo) return;
-        if(hi<=lo+10){ // 10是我随便取的
-            Insertion.sort(a,lo,hi);
-            return;
-        }
+        if(hi<=lo) return;
+//        if(hi<=lo+10){ // 10是我随便取的
+//            Insertion.sort(a,lo,hi);
+//            return;
+//        }
         int j = partition(a,lo,hi);
         sort(a,lo,j-1);
         sort(a,j+1,hi);
@@ -36,8 +37,10 @@ public class Quick {
             if(i>=j)
                 break;
             exch(a,i,j);
+            exchNum++;
         }
         exch(a,lo,j); // 将v=a[j]放入正确的位置，即其左边的元素都小于等于v，右边的元素都大于等于v。
+        exchNum++;
         return j;     // a[lo,j-1]<=a[j]<=a[j+1,hi]达成
     }
     private static boolean less(Comparable p,Comparable q){
@@ -55,8 +58,10 @@ public class Quick {
         StdOut.println();
     }
     public static void main(String[] args){
-        Integer[] a = {3,2,6,0,1,4,7,5};
+        // Integer[] a = {6,2,3,1,4,7,5,2,4,2};
+        Integer[] a = {2,3,1,1,2,3,2,3,2,1,2,3};
         sort(a);
         show(a);
+        StdOut.print("The exchange tims of Quick is "+exchNum);
     }
 }

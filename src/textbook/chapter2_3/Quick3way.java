@@ -4,8 +4,9 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 public class Quick3way {
+    private static int exchNum;
     public static void sort(Comparable[] a){
-        StdRandom.shuffle(a);
+        // StdRandom.shuffle(a);
         sort(a,0,a.length-1);
     }
     private static void sort(Comparable[] a,int lo,int hi){
@@ -23,6 +24,7 @@ public class Quick3way {
             else{
                 i++;
             }
+            exchNum++;
         }
         sort(a,lo,lt-1);
         sort(a,gt+1,hi);
@@ -39,8 +41,9 @@ public class Quick3way {
         StdOut.println();
     }
     public static void main(String[] args){
-        Integer[] a = {2,3,3,3,1,1,2,2,3,1,1};
+        Integer[] a = {2,3,1,1,2,3,2,3,2,1,2,3};
         sort(a);
         show(a);
+        StdOut.print("The exchange tims of Quick3way is "+exchNum);
     }
 }
