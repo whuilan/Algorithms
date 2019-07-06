@@ -20,7 +20,7 @@ public class ResizingArrayStack<Item> implements Iterable<Item> {
 
     public void resize(int newLength) {
         Item[] temp = (Item[]) new Object[newLength];
-        for (int i = 0; i < N; i++) {
+        for (int i = 0; i < N; i++) { // 注意这里的循环条件是i<N,即将栈中的元素移到一个长度变化的数组中存储，而不是i<newLength(扩大时a[i]会超出范围)或者i<a.lenth(缩小时temp[i]会超出范围)
             temp[i] = a[i];
         }
         a = temp;
