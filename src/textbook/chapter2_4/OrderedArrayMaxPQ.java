@@ -5,16 +5,16 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.Transaction;
 import textbook.chapter1_3_3.Stack;
 
-public class UnorderedArrayMaxPQ<Key extends Comparable<Key>> {
+public class OrderedArrayMaxPQ<Key extends Comparable<Key>> {
     private Key[] pq;
     private int N=0;
-    public UnorderedArrayMaxPQ(){
-        pq = (Key[])new Comparable[1];
+    public OrderedArrayMaxPQ(){
+        pq = (Key[]) new Comparable[1];
     }
-    public UnorderedArrayMaxPQ(int max){
+    public OrderedArrayMaxPQ(int max){
         pq = (Key[])new Comparable[max];
     }
-    public UnorderedArrayMaxPQ(Key[] b){
+    public OrderedArrayMaxPQ(Key[] b){
         pq = b;
     }
     public boolean isEmpty(){
@@ -30,43 +30,36 @@ public class UnorderedArrayMaxPQ<Key extends Comparable<Key>> {
         }
         pq = temp;
     }
-    public void insert(Key key){
-        if(N==pq.length){
-            resize(2*pq.length);
+    /*和插入排序的区别在于只需要一层循环，因为栈的大小N就是从零开始逐步增大的，所以没一次insert操作就相当于插入排序中的外层循环i增加了一层，
+    * 其实就是插入排序*/
+    public void insert(Key key) {
+        if (N == pq.length) {
+            resize(2 * pq.length);
         }
-        pq[N++] = key;
-    }
-    public Key max(){
-        int maxIndex = 0;
-        for(int i=1;i<N;i++){
-            if(pq[i].compareTo(pq[maxIndex])>0){
-                maxIndex = i;
-            }
+        pq[N] = key;
+        for (int j = N; j > 0 && (pq[j].compareTo(pq[j - 1])) < 0; j--) {
+            exch(j,j-1);
         }
-        return pq[maxIndex];
-    }
-    public Key delMax(){
-        int maxIndex = 0;
-        for(int i=1;i<N;i++){
-            if(pq[i].compareTo(pq[maxIndex])>0){
-                maxIndex = i;
-            }
-        }
-        Key maxKey = pq[maxIndex];
-        N--;
-        // if(N>0&&N==pq.length/4) resize(pq.length/2);加上这个对输出有一定影响
-        exch(maxIndex,N);
-        pq[N] = null;
-        return maxKey;
+        N++;
     }
     private void exch(int i,int j){
         Key temp = pq[i];
         pq[i] = pq[j];
         pq[j] = temp;
     }
-
+    public Key max(){
+        return pq[--N];
+    }
+    public Key delMax(){
+        Key maxKey = pq[--N];
+        pq[N]=null;
+        if(N>0 && N==pq.length/4){
+            resize(pq.length/2);
+        }
+        return maxKey;
+    }
     public static void main(String[] args){
-        UnorderedArrayMaxPQ<Transaction> pq = new UnorderedArrayMaxPQ<>(6);
+        OrderedArrayMaxPQ<Transaction> pq = new OrderedArrayMaxPQ<>(6);
         while (!StdIn.isEmpty()){
             pq.insert(new Transaction(StdIn.readLine()));
             if(pq.size()>5){
