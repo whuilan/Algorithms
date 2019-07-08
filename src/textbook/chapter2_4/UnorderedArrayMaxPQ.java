@@ -54,8 +54,9 @@ public class UnorderedArrayMaxPQ<Key extends Comparable<Key>> {
         }
         Key maxKey = pq[maxIndex];
         N--;
-        // if(N>0&&N==pq.length/4) resize(pq.length/2);加上这个对输出有一定影响
-        exch(maxIndex,N);
+        // if(N>0&&N==pq.length/4) resize(pq.length/2);加上这个对输出有影响
+        // exch(maxIndex,N); // 其实用不上exch,因为反正要把pq[N]赋为null,而且已经拿到了最大值，所以只需要把pq[N]的值保留下来到最大索引处即可
+        pq[maxIndex] = pq[N];
         pq[N] = null;
         return maxKey;
     }
