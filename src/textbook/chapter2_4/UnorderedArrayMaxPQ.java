@@ -36,15 +36,6 @@ public class UnorderedArrayMaxPQ<Key extends Comparable<Key>> {
         }
         pq[N++] = key;
     }
-    public Key max(){
-        int maxIndex = 0;
-        for(int i=1;i<N;i++){
-            if(pq[i].compareTo(pq[maxIndex])>0){
-                maxIndex = i;
-            }
-        }
-        return pq[maxIndex];
-    }
     public Key delMax(){
         int maxIndex = 0;
         for(int i=1;i<N;i++){
@@ -60,12 +51,20 @@ public class UnorderedArrayMaxPQ<Key extends Comparable<Key>> {
         pq[N] = null;
         return maxKey;
     }
+    public Key max(){
+        int maxIndex = 0;
+        for(int i=1;i<N;i++){
+            if(pq[i].compareTo(pq[maxIndex])>0){
+                maxIndex = i;
+            }
+        }
+        return pq[maxIndex];
+    }
     private void exch(int i,int j){
         Key temp = pq[i];
         pq[i] = pq[j];
         pq[j] = temp;
     }
-
     public static void main(String[] args){
         UnorderedArrayMaxPQ<Transaction> pq = new UnorderedArrayMaxPQ<>(6);
         while (!StdIn.isEmpty()){

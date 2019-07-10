@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.Transaction;
 
-public class OrderecListMaxPQ<Key extends Comparable<Key>> {
+public class OrderedListMaxPQ<Key extends Comparable<Key>> {
     private Node first;
     private int N;
     private class Node{
@@ -42,7 +42,7 @@ public class OrderecListMaxPQ<Key extends Comparable<Key>> {
         return maxKey;
     }
     public static void main(String[] args){
-        OrderecListMaxPQ<Transaction> pq = new OrderecListMaxPQ<>();
+        OrderedListMaxPQ<Transaction> pq = new OrderedListMaxPQ<>();
         while (!StdIn.isEmpty()){
             pq.insert(new Transaction(StdIn.readLine()));
             while (pq.size()>5){
