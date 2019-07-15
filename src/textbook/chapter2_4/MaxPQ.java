@@ -44,9 +44,9 @@ public class MaxPQ<Key extends Comparable<Key>> {
         }
     }
     public void sink(int k){
-        while (2*k<N){ // 因为k要和2k或者2k+1比较，所以要满足2k+1<=N（最后一个结点），即2k<N
+        while (2*k<=N){ // 因为k要和2k或者2k+1比较，所以要满足2k+1<=N（最后一个结点），即2k<N
             int j = 2*k;
-            if(less(j,j+1)){
+            if(j < N && less(j,j+1)){
                 j++;
             }
             if(!less(k,j))
