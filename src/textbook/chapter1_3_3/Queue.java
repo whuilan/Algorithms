@@ -3,7 +3,9 @@ package textbook.chapter1_3_3;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
-public class Queue<Item> {
+import java.util.Iterator;
+
+public class Queue<Item> implements Iterable<Item>{
     private Node first;
     private Node last;
     private int N;
@@ -29,7 +31,21 @@ public class Queue<Item> {
         N--;
         return item;
     }
-
+    public Iterator<Item> iterator(){
+        return new ListIterator();
+    }
+    private class ListIterator implements Iterator<Item>{
+        private Node current = first;
+        public boolean hasNext(){
+            return current != null;
+        }
+        public Item next(){
+            Item item = current.item;
+            current = current.next;
+            return item;
+        }
+        public void remove(){ }
+    }
     public static void main(String[] args){
         Queue<String> queue = new Queue<String>();
         while (!StdIn.isEmpty()){
