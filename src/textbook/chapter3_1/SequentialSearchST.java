@@ -17,6 +17,13 @@ public class SequentialSearchST<Key,Value> {
             this.next = next;
         }
     }
+    public Value get(Key key){
+        for(Node x=first;x!=null;x=x.next){
+            if (key.equals(x.key))
+                return x.val;
+        }
+        return null;
+    }
     public void put(Key key,Value val){
         if(val == null){
             delete(key);
@@ -30,13 +37,6 @@ public class SequentialSearchST<Key,Value> {
         }
         first = new Node(key,val,first);
         N++;
-    }
-    public Value get(Key key){
-        for(Node x=first;x!=null;x=x.next){
-            if (key.equals(x.key))
-                return x.val;
-        }
-        return null;
     }
     public void delete(Key key){
         if(first==null) return;
