@@ -132,14 +132,6 @@ public class BinarySearchST<Key extends Comparable<Key>,Value>{
         else
             return keys[i];
     }
-    // 表中所有键的集合，已排序
-    public Iterable<Key> keys(){
-        Queue<Key> queue = new Queue<>();
-        for(int i=0;i<size();i++){
-            queue.enqueue(keys[i]);
-        }
-        return queue;
-    }
     // 删除最小的键
     public void deleteMin(){
         delete(min());
@@ -156,6 +148,14 @@ public class BinarySearchST<Key extends Comparable<Key>,Value>{
            return rank(hi)-rank(lo)+1;
        else
            return rank(hi)-rank(lo);
+    }
+    // 表中所有键的集合，已排序
+    public Iterable<Key> keys(){
+        Queue<Key> queue = new Queue<>();
+        for(int i=0;i<size();i++){
+            queue.enqueue(keys[i]);
+        }
+        return queue;
     }
     // [lo..hi]之间的所有键，已排序
     public Iterable<Key> keys(Key lo,Key hi){
@@ -177,9 +177,10 @@ public class BinarySearchST<Key extends Comparable<Key>,Value>{
         for(int i=0;i<arr.length;i++){
             st.put(arr[i],i);
         }
-        // st.show();
+        // st.delete("L");
         for(String key:st.keys()){
             StdOut.println(key+" "+st.get(key));
         }
+        StdOut.print(st.size("A","N"));
     }
 }

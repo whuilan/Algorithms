@@ -7,7 +7,9 @@ import edu.princeton.cs.algs4.StdOut;
 public class FrequencyCounter {
     public static void main(String[] args){
         int minlen = Integer.parseInt(args[0]);
-        ST<String,Integer> st = new ST<>();
+        // ST<String,Integer> st = new ST<>();
+        // SequentialSearchST<String,Integer> st = new SequentialSearchST<>();
+        BinarySearchST<String,Integer> st = new BinarySearchST<>(5000);
         while (!StdIn.isEmpty()){
             // 构造符号表并统计频率
             String word = StdIn.readString();
