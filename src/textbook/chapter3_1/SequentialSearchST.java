@@ -1,6 +1,5 @@
 package textbook.chapter3_1;
 
-
 import edu.princeton.cs.algs4.StdOut;
 import textbook.chapter1_3_3.Queue;
 
@@ -25,10 +24,6 @@ public class SequentialSearchST<Key,Value> {
         return null;
     }
     public void put(Key key,Value val){
-        if(val == null){
-            delete(key);
-            return;
-        }
         for(Node x=first;x!=null;x=x.next){
             if(key.equals(x.key)){
                 x.val = val;
@@ -77,7 +72,7 @@ public class SequentialSearchST<Key,Value> {
             String key = arr[i];
             st.put(key,i);
         }
-        st.delete("B");
+        st.delete("S");
         for(String s:st.keys()){
             StdOut.println(s+" "+st.get(s));
         }
