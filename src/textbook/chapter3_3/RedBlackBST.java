@@ -122,6 +122,16 @@ public class RedBlackBST<Key extends Comparable<Key>,Value> {
         h.left.color = !h.left.color ;
         h.right.color = !h.right.color ;
     }
+    public Key min(){
+        if (isEmpty()) throw new NoSuchElementException("calls min() with empty symbol table");
+        return min(root).key;
+    }
+    private Node min(Node h){
+        if(h.left == null){
+            return h;
+        }
+        return min(h.left);
+    }
     // 删除最小键，需要先沿着左链接向下进行变换，确保当前结点不是2-结点.疑问：为啥不是保证最小的那个结点不是2-结点就行？
     public void deleteMin(){
         if(isEmpty()){
@@ -135,7 +145,7 @@ public class RedBlackBST<Key extends Comparable<Key>,Value> {
         root.color = BLACK;
     }
     private Node deleteMin(Node h){
-        if(h.left==null){
+        if(h.left == null){
             return null;
         }
         // 两个连续的左子结点均为2-结点
@@ -164,7 +174,7 @@ public class RedBlackBST<Key extends Comparable<Key>,Value> {
         return h;
     }
     private Node balance(Node h){
-        if(isRed(h.right))
+        if(isRed(h.right) && !isRed(h.left))
             h = rotateLeft(h);
         if(isRed(h.left)&&isRed(h.left.left))
             h = rotateRight(h);
@@ -210,33 +220,43 @@ public class RedBlackBST<Key extends Comparable<Key>,Value> {
     }
     // 删除过程中确保当前结点不是2-结点
     private Node delete(Node h,Key key){
-        if(h == null){
-            return null;
-        }
-        int cmp = key.compareTo(h.key);
-        if(cmp<0){
+        if(key.compareTo(h.key) < 0){
+            if(!isRed(h.left) && !isRed(h.left.left)){
+                h = moveRedLeft(h);
+            }
             h.left = delete(h.left,key);
         }
-        else if(cmp>0){
-            h.right = delete(h.right,key);
-        }
         else{
-
+            if(isRed(h.left)){
+                h = rotateRight(h);
+            }
+            if(key.compareTo(h.key) ==0 && (h.right == null)){
+                return null;
+            }
+            if(!isRed(h.right) && !isRed(h.right.left)){
+                h = moveRedRight(h);
+            }
+            if(key.compareTo(h.key) == 0){
+                Node x = min(h.right);
+                h.key = x.key;
+                h.val = x.val;
+                h.right = deleteMin(h.right);
+            }
+            else {
+                h.right = delete(h.right,key);
+            }
         }
+        return balance(h);
     }
     // 测试用例
     public static void main(String[] args) {
         RedBlackBST<String,Integer> rbBst = new RedBlackBST<>();
-        String[] arr = {"S", "E", "A", "R", "C", "H", "X", "M", "P", "L"};
-        // String[] arr = {"A", "C", "E", "H", "L", "M", "P",  "R", "S", "X"};
+        // String[] arr = {"S", "E", "A", "R", "C", "H", "X", "M", "P", "L"};
+        String[] arr = {"A", "C", "E", "H", "L", "M", "P",  "R", "S", "X"};
         for (int i = 0; i < arr.length; i++) {
             rbBst.put(arr[i], i);
         }
-//        rbBst.deleteMin();
-//        rbBst.deleteMin();
-        rbBst.deleteMax();
-        rbBst.deleteMax();
-//        rbBst.delete("M");
+       rbBst.delete("L");
 //        int size = rbBst.size();
 //        StdOut.println("The size of the tree is:"+size);
 //        for (String key : rbBst.keys()) {
