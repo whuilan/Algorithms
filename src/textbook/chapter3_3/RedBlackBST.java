@@ -3,6 +3,8 @@ package textbook.chapter3_3;
 import edu.princeton.cs.algs4.StdOut;
 import textbook.chapter3_2.BST;
 
+import java.util.NoSuchElementException;
+
 public class RedBlackBST<Key extends Comparable<Key>,Value> {
 
     private Node root;
@@ -21,6 +23,73 @@ public class RedBlackBST<Key extends Comparable<Key>,Value> {
             this.N = N;
             this.color = color;
         }
+    }
+    public int size(){
+        return size(root);
+    }
+    private int size(Node x){
+        if(x==null){
+            return 0;
+        }
+        return x.N;
+    }
+    public boolean isEmpty(){
+        return root == null;
+    }
+    public Value get(Key key) {
+        return get(root, key);
+    }
+
+    private Value get(Node x, Key key) {
+        // 在以x为结点的子树中查找并返回key对应的值
+        // 如果找不到则返回null
+        if (key == null) throw new IllegalArgumentException("calls get() with a null key");
+        if (x == null)
+            return null;
+        int cmp = key.compareTo(x.key);
+        if (cmp < 0)
+            return get(x.left, key);
+        else if (cmp > 0)
+            return get(x.right, key);
+        else
+            return x.val;
+    }
+    public boolean contains(Key key){
+        return get(key) != null;
+    }
+    public void put(Key key,Value val){
+        root = put(root,key,val);
+        root.color = BLACK;
+    }
+    private Node put(Node h,Key key,Value val){
+        if(h==null){
+            return new Node(key,val,1,RED);
+        }
+        int cmp = key.compareTo(h.key);
+        if(cmp<0){
+            h.left = put(h.left,key,val);
+        }
+        else if(cmp>0){
+            h.right = put(h.right,key,val);
+        }
+        else{
+            h.val = val;
+        }
+        // 如果右子结点为红色而左子结点为黑色，则只需要进行左旋
+        if(isRed(h.right)&&!isRed(h.left)){
+            h = rotateLeft(h);
+        }
+        // 如果左子结点和该左子结点的左子结点均为红色（即出现两条连续的红链接），进行右旋转
+        if(isRed(h.left)&&isRed(h.left.left)){
+            h = rotateRight(h);
+        }
+        // 如果右子结点与左子结点均为红色，则进行颜色翻转，并将父结点变为红色（不影响树的黑色平衡性）
+        if(isRed(h.right)&&isRed(h.left)){
+            flipColors(h);
+        }
+
+        h.N = size(h.left)+size(h.right)+1;
+        return h;
     }
     public boolean isRed(Node x){
         if(x==null){
@@ -48,84 +117,125 @@ public class RedBlackBST<Key extends Comparable<Key>,Value> {
         h.N = 1+size(h.left)+size(h.right);
         return x;
     }
-    public int size(){
-        return size(root);
-    }
     public void flipColors(Node h){
-        h.color = RED;
-        h.left.color = BLACK;
-        h.right.color = BLACK;
+        h.color = !h.color ;
+        h.left.color = !h.left.color ;
+        h.right.color = !h.right.color ;
     }
-    private int size(Node x){
-        if(x==null){
-            return 0;
+    // 删除最小键，需要先沿着左链接向下进行变换，确保当前结点不是2-结点.疑问：为啥不是保证最小的那个结点不是2-结点就行？
+    public void deleteMin(){
+        if(isEmpty()){
+            throw new NoSuchElementException("BST underflow");
         }
-        return x.N;
-    }
-    public Value get(Key key) {
-        return get(root, key);
-    }
-
-    private Value get(Node x, Key key) {
-        // 在以x为结点的子树中查找并返回key对应的值
-        // 如果找不到则返回null
-        if (key == null) throw new IllegalArgumentException("calls get() with a null key");
-        if (x == null)
-            return null;
-        int cmp = key.compareTo(x.key);
-        if (cmp < 0)
-            return get(x.left, key);
-        else if (cmp > 0)
-            return get(x.right, key);
-        else
-            return x.val;
-    }
-
-    public void put(Key key,Value val){
-        root = put(root,key,val);
+        // 如果根结点的两个子结点都是黑色，就将根结点设置为红色
+        if(!isRed(root.left) && !isRed(root.right)){
+            root.color = RED;
+        }
+        root = deleteMin(root);
         root.color = BLACK;
     }
-    private Node put(Node h,Key key,Value val){
-        if(h==null){
-            return new Node(key,val,1,RED);
+    private Node deleteMin(Node h){
+        if(h.left==null){
+            return null;
         }
-        int cmp = key.compareTo(h.key);
-        if(cmp<0){
-            h.left = put(h.left,key,val);
+        // 两个连续的左子结点均为2-结点
+        if(!isRed(h.left) && !isRed(h.left.left)){
+            h = moveRedLeft(h);
         }
-        else if(cmp>0){
-            h.right = put(h.right,key,val);
-        }
-        else{
-            h.val = val;
-        }
-        // 如果右子结点为红色而左子结点为黑丝，则只需要进行左旋
-        if(isRed(h.right)&&!isRed(h.left)){
+        h.left = deleteMin(h.left);
+        return balance(h);
+    }
+    // 假设父子结点为红色，两个连续的左子结点均为黑色（均为2-结点），则将其中一个左子结点变红（即变为3-结点）
+    private Node moveRedLeft(Node h){
+        flipColors(h);
+        if(isRed(h.right.left)){
+            h.right = rotateRight(h.right);
             h = rotateLeft(h);
-        }
-        // 如果左子结点和该左子结点的左子结点均为红色（即出现两条连续的红链接），进行右旋转
-        if(isRed(h.left)&&isRed(h.left.left)){
-            h = rotateRight(h);
-        }
-        // 如果右子结点与左子结点均为红色，则进行颜色翻转，并将父结点变为红色（不影响树的黑色平衡性）
-        if(isRed(h.right)&&isRed(h.left)){
             flipColors(h);
         }
-
+        return h;
+    }
+    private Node moveRedRight(Node h){
+        flipColors(h);
+        if(isRed(h.left.left)){
+            h = rotateRight(h);
+            flipColors(h);
+        }
+        return h;
+    }
+    private Node balance(Node h){
+        if(isRed(h.right))
+            h = rotateLeft(h);
+        if(isRed(h.left)&&isRed(h.left.left))
+            h = rotateRight(h);
+        if(isRed(h.left) && isRed(h.right))
+            flipColors(h);
         h.N = size(h.left)+size(h.right)+1;
         return h;
     }
-    
+    public void deleteMax(){
+        if(isEmpty()){
+            throw new NoSuchElementException("BST underflow");
+        }
+        if(!isRed(root.left)&&!isRed(root.right)){
+            root.color = RED;
+        }
+        root = deleteMax(root);
+        root.color = BLACK;
+    }
+    private Node deleteMax(Node h){
+        if(isRed(h.left)){
+            h = rotateRight(h);
+        }
+        if (h.right == null){
+            return null;
+        }
+        if(!isRed(h.right) && !isRed(h.right.left)){
+            h = moveRedRight(h);
+        }
+        h.right = deleteMax(h.right);
+        return balance(h);
+    }
+    public void delete(Key key){
+        if(key == null){
+            throw new IllegalArgumentException("argument to delete() is null");
+        }
+        if(!contains(key))
+            return;
+        if(!isRed(root.left) && !isRed(root.right)){
+            root.color = RED;
+        }
+        root = delete(root,key);
+        root.color = BLACK;
+    }
+    // 删除过程中确保当前结点不是2-结点
+    private Node delete(Node h,Key key){
+        if(h == null){
+            return null;
+        }
+        int cmp = key.compareTo(h.key);
+        if(cmp<0){
+            h.left = delete(h.left,key);
+        }
+        else if(cmp>0){
+            h.right = delete(h.right,key);
+        }
+        else{
+
+        }
+    }
     // 测试用例
     public static void main(String[] args) {
         RedBlackBST<String,Integer> rbBst = new RedBlackBST<>();
-        String[] arr = {"S", "E", "A", "R", "C", "H", "E", "X", "A", "M", "P", "L", "E"};
+        String[] arr = {"S", "E", "A", "R", "C", "H", "X", "M", "P", "L"};
         // String[] arr = {"A", "C", "E", "H", "L", "M", "P",  "R", "S", "X"};
         for (int i = 0; i < arr.length; i++) {
             rbBst.put(arr[i], i);
         }
-        int v = rbBst.get("E");
-        System.out.println(v);
+//        rbBst.deleteMin();
+//        rbBst.deleteMin();
+        rbBst.deleteMax();
+        rbBst.deleteMax();
 //        rbBst.delete("M");
 //        int size = rbBst.size();
 //        StdOut.println("The size of the tree is:"+size);
