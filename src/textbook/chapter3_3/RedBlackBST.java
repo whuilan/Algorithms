@@ -37,13 +37,13 @@ public class RedBlackBST<Key extends Comparable<Key>,Value> {
         return root == null;
     }
     public Value get(Key key) {
+        if (key == null) throw new IllegalArgumentException("calls get() with a null key");
         return get(root, key);
     }
 
     private Value get(Node x, Key key) {
         // 在以x为结点的子树中查找并返回key对应的值
-        // 如果找不到则返回null
-        if (key == null) throw new IllegalArgumentException("calls get() with a null key");
+        // 如果找不到则返回null,此时程序会抛出NoPointer的错误！
         if (x == null)
             return null;
         int cmp = key.compareTo(x.key);
@@ -256,7 +256,9 @@ public class RedBlackBST<Key extends Comparable<Key>,Value> {
         for (int i = 0; i < arr.length; i++) {
             rbBst.put(arr[i], i);
         }
-       rbBst.delete("L");
+       // rbBst.delete("L");
+        int v = rbBst.get("D");
+        StdOut.println(v);
 //        int size = rbBst.size();
 //        StdOut.println("The size of the tree is:"+size);
 //        for (String key : rbBst.keys()) {
