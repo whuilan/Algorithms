@@ -1,5 +1,6 @@
 package textbook.chapter3_4;
 
+import textbook.chapter1_3_3.Queue;
 import textbook.chapter3_1.SequentialSearchST;
 
 public class SeparateChainingHashST<Key,Value> {
@@ -20,14 +21,55 @@ public class SeparateChainingHashST<Key,Value> {
             st[i] = new SequentialSearchST<>();
         }
     }
+    public int size(){
+        return N;
+    }
+    public boolean isEmpty(){
+        return size() == 0;
+    }
+    public boolean contains(Key key){
+        return get(key) != null;
+    }
     private int hash(Key key){
         return (key.hashCode() & 0x7fffffff) % M;
     }
     public Value get(Key key){
-        return (Value) st[hash(key)].get(key);
+        int i = hash(key);
+        return  st[i].get(key);
     }
     public void put(Key key,Value val){
-        st[hash(key)].put(key,val);
+        int i = hash(key);
+        if(!st[i].contains(key)){
+            N++;
+        }
+        st[i].put(key,val);
     }
-    // public Iterable<Key> keys(){return null;}
+    public void delete(Key key){
+        int i = hash(key);
+        if(st[i].contains(key)){
+            N--;
+        }
+        st[i].delete(key);
+    }
+    public Iterable<Key> keys(){
+        Queue<Key> queue = new Queue<>();
+        for(int i = 0; i < M; i++){
+            for(Key key:st[i].keys()){
+                queue.enqueue(key);
+            }
+        }
+        return queue;
+    }
+
+    public static void main(String[] args){
+        SeparateChainingHashST<String,Integer> st = new SeparateChainingHashST<>(5);
+        String[] arr ={"S","E","A","R","C","H","E","X","A","M","P","L","E"};
+        for(int i=0; i<arr.length; i++){
+            st.put(arr[i],i);
+        }
+        System.out.println("intialization accomplished");
+        int val = st.get("E");
+        System.out.println(val);
+    }
+
 }
