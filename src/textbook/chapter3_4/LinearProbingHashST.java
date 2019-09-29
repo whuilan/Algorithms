@@ -40,6 +40,7 @@ public class LinearProbingHashST<Key, Value> {
         }
         keys = newKeys;
         vals = newVals;
+        this.M = newLength;
     }
 
     public void put(Key key,Value val){
@@ -114,7 +115,7 @@ public class LinearProbingHashST<Key, Value> {
     }
 
     public static void main(String[] args){
-        LinearProbingHashST<String, Integer> st = new LinearProbingHashST<>(16);
+        LinearProbingHashST<String, Integer> st = new LinearProbingHashST<>();
         String[] arr ={"S","E","A","R","C","H","E","X","A","M","P","L","E"};
         for(int i=0; i<arr.length; i++){
             st.put(arr[i],i);
