@@ -33,7 +33,7 @@ public class SparseVecotr {
     public double dot(double[] that){
         double sum = 0.0;
         for(int i : st.keys()){
-            sum += this.get(i) * that[i]; // this指代的是实例化之后的SparseVector对象，而不是st,this.get()会跳转到24行执行
+            sum += this.get(i) * that[i]; // this指代的是实例化之后的SparseVector对象，而不是st,this.get()会跳转到25行执行
         }
         return sum;
     }
@@ -44,21 +44,26 @@ public class SparseVecotr {
         for(int i = 0; i < N;i++){
             a[i] = new SparseVecotr();
         }
-        double[] a0 = {0, 0.9, 0, 0, 0};
-        double[] a1 = {0, 0, 0.36, 0.36, 0.18};
-        double[] a2 = {0, 0, 0, 0.9, 0};
-        double[] a3 = {0.9, 0, 0, 0, 0};
-        double[] a4 = {0.47, 0, 0.47, 0, 0};
+        double[][] a0 = {
+            {0, 0.9, 0, 0, 0},
+            {0, 0, 0.36, 0.36, 0.18},
+            {0, 0, 0, 0.9, 0},
+            {0.9, 0, 0, 0, 0},
+            {0.47, 0, 0.47, 0, 0}
+        };
         double[] x = {0.05, 0.04, 0.36, 0.37, 0.19};
         double[] b = new double[N];
+        // 对稀疏(向量)矩阵进行初始化
         for(int i = 0;i < N;i++){
-            switch (i){
-                case 0:
-                   for(int j=0;j<N;j++){
-                       a[i].put(i,a0[j]);
-                   }
+            for(int j = 0;j < N;j++){
+                a[i].put(j,a0[i][j]);
             }
         }
-        StdOut.println("test");
+        // 进行点乘操作
+        for(int i = 0;i < N;i++){
+            b[i] = a[i].dot(x);
+            StdOut.print(b[i]+" ");
+        }
+        StdOut.println();
     }
 }
