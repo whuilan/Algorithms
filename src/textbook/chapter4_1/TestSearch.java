@@ -2,6 +2,9 @@ package textbook.chapter4_1;
 
 import edu.princeton.cs.algs4.In;
 
+/**
+ * 寻找和给点起点连通的所有顶点
+ */
 public class TestSearch {
     public static void main(String[] args){
         Graph graph = new Graph(new In(args[0]));
