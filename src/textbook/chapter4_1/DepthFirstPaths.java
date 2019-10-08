@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdOut;
 import textbook.chapter1_3_3.Stack;
 
 /**
- * 使用深度优先搜索来查找图中的所有路径（从所有顶点到给定起点）
+ * 使用深度优先搜索来查找图中的所有路径（从起点到所有顶点）
  */
 public class DepthFirstPaths {
     private boolean[] marked; // 每一个顶点与起点s是否连通
