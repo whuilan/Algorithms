@@ -1,5 +1,9 @@
 package textbook.chapter4_1;
 
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
+import textbook.chapter1_3_3.Bag;
+
 /**
  * 使用深度优先搜索找出图中所有的连通分量
  */
@@ -35,5 +39,23 @@ public class CC {
     }
     public int id(int v){
         return id[v];
+    }
+
+    public static void main(String[] args){
+        Graph g = new Graph(new In(args[0]));
+        CC cc = new CC(g);
+        StdOut.println(cc.count + " components");
+        Bag<Integer>[] components = (Bag<Integer> []) new Bag[cc.count];
+        for(int i = 0;i < cc.count; i++){
+            components[i] = new Bag<Integer>();
+            for(int j = 0; j < g.V(); j++){
+                if(cc.id(j) == i){
+                    components[i].add(j);
+                    StdOut.print(j + " ");
+                }
+            }
+            StdOut.println();
+        }
+
     }
 }
