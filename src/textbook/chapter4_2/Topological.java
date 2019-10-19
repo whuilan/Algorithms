@@ -3,7 +3,7 @@ package textbook.chapter4_2;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * 拓扑排序
+ * 拓扑排序(相关数据结构都使用自己写的)
  */
 public class Topological {
     private Iterable<Integer> order;   // 顶点的拓扑顺序
