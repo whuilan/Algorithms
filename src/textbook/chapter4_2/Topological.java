@@ -3,7 +3,7 @@ package textbook.chapter4_2;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * 拓扑排序(相关数据结构都使用自己写的)
+ * 优先级限制下的调度问题，也即拓扑排序(相关数据结构都使用自己写的)
  */
 public class Topological {
     private Iterable<Integer> order;   // 顶点的拓扑顺序
@@ -29,6 +29,9 @@ public class Topological {
         String separator = "/";
         SymbolDigraph sg = new SymbolDigraph(filename, separator);
         Topological topo = new Topological(sg.G());
+        for(int v :topo.order()){
+            StdOut.print(v + " ");
+        }
         for(int v : topo.order()){
             StdOut.println(sg.name(v));
         }

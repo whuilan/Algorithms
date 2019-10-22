@@ -41,7 +41,7 @@ public class DirectedDFS {
         sources.add(1);
         sources.add(2);
         sources.add(6);
-        DirectedDFS reachable = new DirectedDFS(g, sources);
+        DirectedDFS reachable = new DirectedDFS(g, source);
         for(int v = 0; v < g.V(); v++){
             if(reachable.marked(v)){
                 StdOut.print(v + " ");
