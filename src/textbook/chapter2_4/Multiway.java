@@ -1,7 +1,6 @@
 package textbook.chapter2_4;
 
 import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.IndexMinPQ;
 import edu.princeton.cs.algs4.StdOut;
 
 public class Multiway {
@@ -15,7 +14,7 @@ public class Multiway {
         }
         while (!pq.isEmpty()){
             StdOut.println(pq.minKey());
-            int i = pq.delMin();
+            int i = pq.deleteMin();
 
             if(!streams[i].isEmpty()){
                 pq.insert(i,streams[i].readString());

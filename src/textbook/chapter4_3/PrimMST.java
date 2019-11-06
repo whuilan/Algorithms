@@ -22,21 +22,15 @@ public class PrimMST {
         for(int v = 0;v < ewg.V();v++){
               distTo[v] = Double.POSITIVE_INFINITY;
         }
-        for(int v = 0;v < ewg.V();v++){
-            if(!marked[v]){
-                prim(ewg, v);
-            }
-        }
-    }
-    private void prim(EdgeWeightedGraph ewg, int s){
-        distTo[s] = 0.0;
-        pq.insert(s,distTo[s]);
+
+        distTo[0] = 0.0;
+        pq.insert(0, 0.0);   // 用顶点0和权重0.0初始化pq，其实也可以换成visit(ewg, 0)
         while (!pq.isEmpty()){
-            int v = pq.delMin();
-            scan(ewg, v);
+            visit(ewg, pq.delMin());  // 将最近的顶点添加到树中
         }
     }
-    private void scan(EdgeWeightedGraph ewg, int v){
+    private void visit(EdgeWeightedGraph ewg, int v){
+        // 将顶点v添加到树中，更新数据
         marked[v] = true;
         for(Edge e : ewg.adj(v)){
             int w = e.other(v);
@@ -44,8 +38,9 @@ public class PrimMST {
                 continue;
             }
             if(e.weight() < distTo[w]){
-                distTo[w] = e.weight();
+                // 链接w和树的最佳边Edge变成e
                 edgeTo[w] = e;
+                distTo[w] = e.weight();
                 if(pq.contains(w)){
                     pq.changeKey(w, distTo[w]);
                 }else{
