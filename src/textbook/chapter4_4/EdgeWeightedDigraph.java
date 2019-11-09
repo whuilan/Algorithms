@@ -1,6 +1,7 @@
 package textbook.chapter4_4;
 
 import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
 import textbook.chapter1_3_3.Bag;
 import textbook.chapter4_3.Edge;
 
@@ -61,10 +62,16 @@ public class EdgeWeightedDigraph {
         for(int v = 0; v < V; v++){
             s += v + ": ";
             for(DirectedEdge e : adj[v]){
-                s += e + " ";
+                s += e + "  ";
             }
             s += "\n";
         }
         return s;
+    }
+
+    public static void main(String[] args){
+        In in = new In("tinyEWD.txt");
+        EdgeWeightedDigraph dg = new EdgeWeightedDigraph(in);
+        StdOut.println(dg);
     }
 }
