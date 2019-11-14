@@ -1,7 +1,7 @@
 /******************************************************************************
  *  Compilation:  javac DijkstraAllPairsSP.java
  *  Execution:    none
- *  Dependencies: EdgeWeightedDigraph.java Dijkstra.java
+ *  Dependencies: EdgeWeightedDigraph.java DijkstraSP.java
  *
  *  Dijkstra's algorithm run from each vertex. 
  *  Takes time proportional to E V log V and space proportional to EV.

@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdOut;
 import textbook.chapter1_3_3.Queue;
 
 /**
- * 最小生成树的Prim算法（即时版本）
+ * 最小生成树的Prim算法（即时版本）- 加权无向图
  */
 public class PrimMST {
     private Edge[] edgeTo;    // edgeTo[v] = 将v连接到树中的最小的边,即顶点v距离树最近的边

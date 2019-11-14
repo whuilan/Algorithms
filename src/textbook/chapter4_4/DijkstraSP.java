@@ -1,17 +1,19 @@
 package textbook.chapter4_4;
 
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
 import textbook.chapter1_3_3.Stack;
 import textbook.chapter2_4.IndexMinPQ;
 
 /**
  * 最短路径的Dijkstra算法
  */
-public class Dijkstra {
+public class DijkstraSP {
     private DirectedEdge[] edgeTo;
     private double[] distTo;
     private IndexMinPQ<Double> pq; // 保存需要被放松的顶点并确认下一个即将被放松的顶点
 
-    public Dijkstra(EdgeWeightedDigraph dg, int s){
+    public DijkstraSP(EdgeWeightedDigraph dg, int s){
         edgeTo = new DirectedEdge[dg.V()];
         distTo = new double[dg.V()];
         pq = new IndexMinPQ<>(dg.V());
@@ -57,5 +59,22 @@ public class Dijkstra {
             path.push(e);
         }
         return path;
+    }
+
+    public static void main(String[] args){
+        In in = new In("tinyEWD.txt");
+        EdgeWeightedDigraph dg = new EdgeWeightedDigraph(in);
+        int s = 0;
+        DijkstraSP sp = new DijkstraSP(dg, s);
+        for(int v = 0; v < dg.V(); v++){
+            StdOut.print(s + " to " + v);
+            StdOut.printf(" (%4.2f):",sp.distTo[v]);
+            if(sp.hasPathTo(v)){
+                for(DirectedEdge e : sp.pathTo(v)){
+                    StdOut.print(e + " ");
+                }
+            }
+            StdOut.println();
+        }
     }
 }

@@ -53,10 +53,11 @@ public class DirectedCycle {
     }
 
     public static void main(String[] args){
-//        In in = new In("tinyDG.txt");
-//        Digraph g = new Digraph(in);
-        SymbolDigraph sg = new SymbolDigraph("jobs.txt", "/");
-        DirectedCycle dc = new DirectedCycle(sg.G());
+        In in = new In("tinyDG.txt");
+        Digraph g = new Digraph(in);
+        DirectedCycle dc = new DirectedCycle(g);
+        // SymbolDigraph sg = new SymbolDigraph("jobs.txt", "/");
+        // DirectedCycle dc = new DirectedCycle(sg.G());
         if(dc.hasCycle()){
             StdOut.println("Directed Cycle:");
             for(int v : dc.cycle()){

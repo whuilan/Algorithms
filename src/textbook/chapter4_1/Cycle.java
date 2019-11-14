@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * 使用深度优先搜索来检测环：给定的图是无环图吗？
+ * 使用深度优先搜索来检测无向图中的环：给定的图是无环图吗？
  */
 public class Cycle {
     private boolean[]  marked;
@@ -36,7 +36,7 @@ public class Cycle {
 
     public static void main(String[] args){
         Graph g = new Graph(new In(args[0]));
-        Cycle cycle = new Cycle(g);
+         Cycle cycle = new Cycle(g);
         StdOut.println(cycle.hasCycle);
     }
 }
