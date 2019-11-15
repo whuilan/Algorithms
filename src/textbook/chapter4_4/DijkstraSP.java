@@ -6,7 +6,7 @@ import textbook.chapter1_3_3.Stack;
 import textbook.chapter2_4.IndexMinPQ;
 
 /**
- * 最短路径的Dijkstra算法
+ * 单点最短路径的Dijkstra算法：给定起点到树中所有顶点的最短路径
  */
 public class DijkstraSP {
     private DirectedEdge[] edgeTo;

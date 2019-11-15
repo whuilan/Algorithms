@@ -3,6 +3,8 @@ package textbook.chapter4_2;
 import textbook.chapter1_3_3.Queue;
 import textbook.chapter1_3_3.Stack;
 import textbook.chapter4_1.Graph;
+import textbook.chapter4_4.DirectedEdge;
+import textbook.chapter4_4.EdgeWeightedDigraph;
 
 /**
  * 有向图中基于深度优先搜索的顶点排序
@@ -25,10 +27,35 @@ public class DepthFirstOrder {
             }
         }
     }
+    // 重载：接受加权有向图
+    public DepthFirstOrder(EdgeWeightedDigraph g){
+        marked = new boolean[g.V()];
+        pre = new Queue<>();
+        post = new Queue<>();
+        reversePost = new Stack<>();
+
+        for(int v = 0; v < g.V(); v++){
+            if(!marked[v]){
+                dfs(g,v);
+            }
+        }
+    }
     private void dfs(Digraph g, int v){
         marked[v] = true;
         pre.enqueue(v);
         for(int w : g.adj(v)){
+            if(!marked[w]){
+                dfs(g, w);
+            }
+        }
+        post.enqueue(v);
+        reversePost.push(v);
+    }
+    private void dfs(EdgeWeightedDigraph g,int v){
+        marked[v] = true;
+        pre.enqueue(v);
+        for(DirectedEdge e : g.adj(v)){
+            int w = e.to();
             if(!marked[w]){
                 dfs(g, w);
             }

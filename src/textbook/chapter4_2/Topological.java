@@ -1,6 +1,8 @@
 package textbook.chapter4_2;
 
 import edu.princeton.cs.algs4.StdOut;
+import textbook.chapter4_4.EdgeWeightedDigraph;
+import textbook.chapter4_4.EdgeWeightedDirectedCycle;
 
 /**
  * 优先级限制下的调度问题，也即拓扑排序(相关数据结构都使用自己写的)
@@ -11,6 +13,14 @@ public class Topological {
     public Topological(Digraph g){
         DirectedCycle dc = new DirectedCycle(g);
         if(!dc.hasCycle()){
+            DepthFirstOrder dfo = new DepthFirstOrder(g);
+            order = dfo.reversePost();
+        }
+    }
+    // 重载： 处理加权有向图的拓扑排序
+    public Topological(EdgeWeightedDigraph g){
+        EdgeWeightedDirectedCycle ec = new EdgeWeightedDirectedCycle(g);
+        if(!ec.hasCycle()){
             DepthFirstOrder dfo = new DepthFirstOrder(g);
             order = dfo.reversePost();
         }
