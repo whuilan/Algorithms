@@ -1,5 +1,7 @@
 package textbook.chapter4_4;
 
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
 import textbook.chapter1_3_3.Stack;
 import textbook.chapter4_2.Topological;
 
@@ -26,7 +28,7 @@ public class AcyclicSP {
         for(DirectedEdge e : G.adj(v)){
             int w = e.to();
             if(distTo[w] > distTo[v] + e.weight()){
-                distTo[w] = distTo[w] + e.weight();
+                distTo[w] = distTo[v] + e.weight();
                 edgeTo[w] = e;
             }
         }
@@ -46,5 +48,22 @@ public class AcyclicSP {
                 path.push(e);
             }
         return path;
+    }
+
+    public static void main(String[] args){
+        In in = new In("tinyEWDAG.txt");
+        EdgeWeightedDigraph ewd = new EdgeWeightedDigraph(in);
+        int s  = 5;
+        AcyclicSP asp = new AcyclicSP(ewd, s);
+        for(int v = 0; v < ewd.V(); v++){
+            StdOut.print(s + " to "+ v);
+            StdOut.printf(" (%4.2f): ", asp.distTo(v));
+            if(asp.hasPathTo(v)){
+                for(DirectedEdge e : asp.pathTo(v)){
+                    StdOut.print(e+" ");
+                }
+            }
+            StdOut.println();
+        }
     }
 }
