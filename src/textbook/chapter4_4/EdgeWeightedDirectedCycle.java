@@ -48,7 +48,7 @@ public class EdgeWeightedDirectedCycle {
     public boolean hasCycle(){
         return cycle != null;
     }
-    public Iterable<DirectedEdge> edges(){
+    public Iterable<DirectedEdge> cycle(){
        return cycle;
     }
 }

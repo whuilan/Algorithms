@@ -23,7 +23,7 @@ public class DijkstraSP {
         distTo[s] = 0.0;
         pq.insert(s, 0.0);  // 用起点和权重0.0初始化pq, 从起点开始放松，也可以直接对起点进行放松: relax(dg, s)
         while (!pq.isEmpty()){
-            relax(dg, pq.deleteMin()); // 对优先队列中离起点最近的顶点进行松弛
+            relax(dg, pq.deleteMin()); // 对优先队列中离起点最近的顶点进行松弛并将其加入最短路径树
         }
     }
     private void relax(EdgeWeightedDigraph dg, int v){
