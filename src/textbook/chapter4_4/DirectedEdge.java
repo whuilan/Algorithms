@@ -23,6 +23,6 @@ public class DirectedEdge {
         return weight;
     }
     public String toString(){
-        return String.format("%d->%d:%.2f", v, w, weight);
+        return String.format("%d->%d:%.4f", v, w, weight);  // 暂时由2改为4，套汇问题中需要保留四位小数
     }
 }

@@ -36,7 +36,7 @@ public class EdgeWeightedDirectedCycle {
             else if(onStack[w]){
                 cycle = new Stack<>();
                 DirectedEdge x;
-                for( x = e; x.from() != w; x = edgeTo[e.from()]){
+                for( x = e; x.from() != w; x = edgeTo[x.from()]){
                     cycle.push(x);
                 }
                 cycle.push(x);
