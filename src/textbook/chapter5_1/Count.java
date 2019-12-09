@@ -23,6 +23,11 @@ public class Count {
                 count[index]++;
             }
         }
+        // 如果输入中只含有字母表中的字母，可以把以上内循环改为如下简洁的形式
+//        int[] indexes = alphabet.toIndexes(s);
+//        for(int i = 0; i < N; i++){
+//            count[indexes[i]]++;
+//        }
         for(int i = 0; i < R; i++){
             StdOut.println(alphabet.toChar(i)+" "+ count[i]);
         }
