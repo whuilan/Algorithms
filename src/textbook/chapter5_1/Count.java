@@ -1,6 +1,5 @@
 package textbook.chapter5_1;
 
-import edu.princeton.cs.algs4.Alphabet;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
@@ -11,7 +10,7 @@ import edu.princeton.cs.algs4.StdOut;
 public class Count {
     public static void main(String[] args){
         Alphabet alphabet = new Alphabet(args[0]);
-        int R =  alphabet.radix();
+        int R = alphabet.R();
         int[] count = new int[R]; // count的索引即对应字符串中每个字符的索引
 
         String s = StdIn.readAll();
@@ -20,7 +19,8 @@ public class Count {
             char c = s.charAt(i);
             if (alphabet.contains(c)){
                 // 使用toIndex获取字符c在alphabet中的索引即count的索引
-                count[alphabet.toIndex(c)]++;
+                int index = alphabet.toIndex(c);
+                count[index]++;
             }
         }
         for(int i = 0; i < R; i++){
