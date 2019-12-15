@@ -1,5 +1,6 @@
 package textbook.chapter5_1;
 
+import edu.princeton.cs.algs4.Alphabet;
 import edu.princeton.cs.algs4.Insertion;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
@@ -8,13 +9,16 @@ import edu.princeton.cs.algs4.StdOut;
  * 高位优先的字符串排序
  */
 public class MSD {
-    private static int R = 256;  // 基数
-    private static final int M = 15; // 小数组的切换阈值
+    private static int R = 26;  // 基数
+    private static final int M = 0; // 小数组的切换阈值
     private static String[] aux;
+    // 为调试跟踪书上463页的例子，使用alphabet.LOWERCASE字符集，即26个小写的英文字母
+    public static Alphabet lowercase = new Alphabet().LOWERCASE;
     private static int charAt(String s, int d){
         // 将字符串中字符索引转化为数组索引
         if(d < s.length()){
-            return s.charAt(d);
+            char c = s.charAt(d);
+            return lowercase.toIndex(c);
         }else {
             return -1;
         }
@@ -48,7 +52,7 @@ public class MSD {
         }
         // 回写
         for(int i = lo; i <= hi; i++){
-            a[i] = aux[i];
+            a[i] = aux[i - lo];
         }
 
         // 递归地以每个字符为键进行排序
