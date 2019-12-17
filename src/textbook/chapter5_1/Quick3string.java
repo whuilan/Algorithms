@@ -9,11 +9,12 @@ import edu.princeton.cs.algs4.StdOut;
  */
 public class Quick3string {
     // 为了调试跟踪书上的示例，用lowercase的26个字符集作为字母表
-    private static Alphabet lowercase = new Alphabet().LOWERCASE;
+    // private static Alphabet lowercase = new Alphabet().LOWERCASE;
     private static int charAt(String s, int d){
         if(d < s.length()){
             char c = s.charAt(d);
-            return lowercase.toIndex(c);
+            return c;
+            // return lowercase.toIndex(c);
         }else {
             return -1;
         }
