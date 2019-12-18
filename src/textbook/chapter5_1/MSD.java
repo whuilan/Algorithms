@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * 高位优先的字符串排序
+ * 高位优先的字符串排序(即从d=0位开始比较)
  */
 public class MSD {
     private static int R = 26;  // 基数
