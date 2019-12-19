@@ -40,13 +40,13 @@ public class TrieST<Value> {
     // 先查找，如果key存在于以x为根结点的子单词查找树中则更新与它相关联的值
     private Node put(Node x, String key, Value val, int d){
         if(x == null){
-            return new Node();
+            x = new Node();
         }
         if(d == key.length()){
             x.val = val;
             return x;
         }
-        char c =key.charAt(d); // 找到第d个字符所对应的子单词查找树
+        char c = key.charAt(d); // 找到第d个字符所对应的子单词查找树
         x.next[c] = put(x.next[c], key, val, d + 1);
         return x; // 没想到
     }
@@ -57,7 +57,7 @@ public class TrieST<Value> {
             String key = StdIn.readString();
             st.put(key, i);
         }
-        String key = "sea";
+        String key = "by";
         int val = st.get(key);
         StdOut.println(val);
     }
