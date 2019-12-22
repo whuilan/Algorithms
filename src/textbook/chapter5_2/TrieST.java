@@ -34,6 +34,7 @@ public class TrieST<Value> {
         char c = key.charAt(d);
         return get(x.next[c], key, d + 1);
     }
+
     // 向表中插入键值对（如果值为null则删除键key及其对应的值）
     public void put(String key, Value val){
         root = put(root, key, val, 0);
@@ -50,6 +51,34 @@ public class TrieST<Value> {
         char c = key.charAt(d); // 找到第d个字符所对应的子单词查找树
         x.next[c] = put(x.next[c], key, val, d + 1);
         return x; // 没想到
+    }
+
+    // 删除键key(和它对应的值)
+    public void delete(String key){
+        root = delete(root, key, 0);
+    }
+    private Node delete(Node x, String key, int d){
+        if(x == null){
+            return null;
+        }
+        if(d == key.length()){
+           x.val = null;
+        }
+        else {
+            char c = key.charAt(d);
+            x.next[c] = delete(x.next[c], key, d + 1);
+        }
+        // 如果x结点属于要删除的键key,但同时也是别的键的最后一个字符，则直接返回x而不应该删除x
+        if(x.val != null){
+            return x;
+        }
+        // 将结点的值（某个指向）置为null后，如果结点还有其他的指向，直接返回该结点而不是返回null）
+        for(int c = 0; c < R; c++){
+            if(x.next[c] != null){
+                return x;
+            }
+        }
+        return null;
     }
     // 键值对的数量
     public int size(){
@@ -74,9 +103,11 @@ public class TrieST<Value> {
     public Iterable<String> keys(){
         return keysWithPrefix("");
     }
-    // 所有以pre为前缀的键
+
+    // 前缀匹配：符号表中所有以pre为前缀的键
     public Iterable<String> keysWithPrefix(String pre){
         Queue<String> q = new Queue<>();
+        // 先调用get()方法找出给定前缀对应的子单词查找树
         Node childTrie = get(root, pre, 0);
         collect(childTrie, pre, q);
         return q;
@@ -94,19 +125,73 @@ public class TrieST<Value> {
         }
     }
 
+    // 通配符匹配：所有和pat匹配的键（其中"."能够匹配任意字符）
+    public Iterable<String> keysThatMatch(String pat){
+        Queue<String> q = new Queue<>();
+        collect(root, "", pat, q);
+        return q;
+    }
+    private void collect(Node x, String pre, String pat, Queue<String> q){
+        int d = pre.length();
+        if(x == null){
+            return;
+        }
+        // 和模式pat匹配的键长度必须要和pat相同，也就是在pat结束时pre也应该到了该字符串末尾
+        if(d == pat.length() && x.val != null){
+            q.enqueue(pre);
+        }
+        // 匹配到了之后无须再继续匹配
+        if(d == pat.length()){
+            return;
+        }
+        char next = pat.charAt(d);
+        for(char c = 0; c < R; c++){
+            if(next == '.' || next == c){
+                collect(x.next[c], pre + c, pat, q);
+            }
+        }
+    }
+
+    // 最长前缀：指符号表中的字符串作为该键的前缀
+    public String longestPrefixOf(String s){
+        int length = search(root, s, 0, 0);
+        return s.substring(0, length);
+    }
+    private int search(Node x, String s, int d, int length){
+        if(x == null){
+            return length;
+        }
+        if(x.val != null){
+            length = d;
+        }
+        if(d == s.length()){
+            return length;
+        }
+        char c = s.charAt(d);
+        return search(x.next[c], s, d + 1, length);
+    }
+
     public static void main(String[] args){
         TrieST<Integer> st = new TrieST<>();
         for(int i = 0; !StdIn.isEmpty(); i++){
             String key = StdIn.readString();
             st.put(key, i);
         }
-        for(String key : st.keysWithPrefix("se")){
-            StdOut.println(key);
-        }
-        StdOut.println();
-        for(String key : st.keys()){
-            StdOut.println(key);
-        }
+        st.delete("shells");
+//         int a = st.get("shell");
+//         StdOut.println(a);
+//        String str = st.longestPrefixOf("shellsort");
+//        StdOut.println(str);
+
+//        for(String key : st.keysThatMatch(".he")){
+//            StdOut.println(key);
+//        }
+
+//        StdOut.println();
+//        for(String key : st.keys()){
+//            StdOut.println(key);
+//        }
+
 //        int size = st.size();
 //        StdOut.println(size);
     }
