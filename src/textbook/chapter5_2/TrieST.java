@@ -80,6 +80,12 @@ public class TrieST<Value> {
         }
         return null;
     }
+    public boolean contains(String key){
+        return get(key) != null;
+    }
+    public boolean isEmpty(){
+        return size() == 0;
+    }
     // 键值对的数量
     public int size(){
         return size(root);
