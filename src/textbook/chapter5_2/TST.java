@@ -1,5 +1,8 @@
 package textbook.chapter5_2;
 
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
+
 /**
  * 基于三向单词查找树的符号表
  */
@@ -64,5 +67,16 @@ public class TST<Value> {
             x.mid = put(x.mid, key, val, d);
         }
         return x;
+    }
+
+    public static void main(String[] args){
+        TST<Integer> tst = new TST<>();
+        for(int i = 0; !StdIn.isEmpty(); i++){
+            String key = StdIn.readString();
+            tst.put(key, i);
+        }
+        String str = "shore";
+        int index = tst.get(str);
+        StdOut.println(index);
     }
 }
