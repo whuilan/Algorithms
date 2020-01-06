@@ -3,7 +3,7 @@ package textbook.chapter5_3;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Knuth-Morris-Pratt字符串查找算法：确定有限状态自动机DFA
+ * Knuth-Morris-Pratt子字符串查找算法：确定有限状态自动机DFA
  */
 public class KMP {
     public String pat;    // 需要查找的模式字符串
@@ -27,7 +27,7 @@ public class KMP {
         }
     }
     public int search(String txt){
-        // 在txt上模拟DFA的运行
+        // 在txt上模拟DFA的运行,找到pat出现的位置
         int i, N = txt.length();
         int j, M = pat.length();
         for(i = 0, j = 0; i < N && j < M; i++){
