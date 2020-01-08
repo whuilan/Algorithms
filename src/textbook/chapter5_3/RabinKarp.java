@@ -9,6 +9,7 @@ import java.util.Random;
  * Rabin-Karp指纹字符串查找方法（基于散列）
  */
 public class RabinKarp {
+    private String pat;           // 仅拉斯维加斯算法需要
     private long patHash;         // 模式字符串的散列值
     private int M;                // 模式字符串的长度
     private long Q;               // 一个很大的素数
@@ -16,6 +17,7 @@ public class RabinKarp {
     private long RM;              // R^(M-1) % Q，用于减去前一个数时的计算  ？？为什么要取余
 
     public RabinKarp(String pat){
+        this.pat = pat;
         M = pat.length();
         Q = longRandomPrime();    // 随机生成一个很大的素数
         patHash = hash(pat, M);   // 计算得到模式字符串的散列值
@@ -28,7 +30,7 @@ public class RabinKarp {
     public int search(String txt){
         // 在文本中查找和模式字符串相等的散列值
         long txtHash = hash(txt, M);  // 文本中从第一个字符开始的长为M的子字符串的散列值
-        if(txtHash == patHash && check(0)){
+        if(txtHash == patHash && check(txt,0)){
             return 0;   // 一开始就匹配成功
         }
         int N = txt.length();
@@ -37,7 +39,7 @@ public class RabinKarp {
             // i从M开始循环是因为i代表子字符串的最后一个数字，而不是第一个数字，所以才能取到M
             txtHash = (txtHash + Q - txt.charAt(i - M) * RM % Q) % Q; // 额外加上一个Q来保证所有数均为正，这样取余操作才能得到预期的结果
             txtHash = (txtHash * R + txt.charAt(i)) % Q;
-            if(txtHash == patHash && check(i - M + 1)){
+            if(txtHash == patHash && check(txt,i - M + 1)){
                 return i - M + 1;    // 找到匹配
             }
         }
@@ -67,6 +69,15 @@ public class RabinKarp {
      模式字符串的散列值冲突的概率小于10^-20，因此可以认为匹配到的和模式字符串散列值相等的子字符串一定和模式字符串相等
      */
     private boolean check(int i){
+        return true;
+    }
+    // 拉斯维加斯方法验证：逐个验证模式pat与txt[i..i - M + 1]是否每个字符都相同
+    private boolean check(String txt, int i){
+        for(int j = 0; j < M; j++){
+            if(pat.charAt(j) != txt.charAt(i + j)){
+                return false;
+            }
+        }
         return true;
     }
 
