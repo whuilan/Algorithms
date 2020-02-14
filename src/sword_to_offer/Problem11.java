@@ -24,7 +24,7 @@ public class Problem11 {
                 lo = mid;
             }
             else if (array[mid] <= array[hi]){
-                hi= mid;
+                hi = mid;
             }
         }
         return array[mid];
