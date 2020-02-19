@@ -25,7 +25,7 @@ public class Problem18_2 {
             return deleteDuplication(nextNode); // 已删除所有和首节点重复的节点
         } else {
             pHead.next = deleteDuplication(pHead.next); // 没有和首节点重复的节点，继续判断首节点的下一个节点
-            return pHead;
+            return pHead;  // 这一步的return不能忘了呀！
         }
     }
 

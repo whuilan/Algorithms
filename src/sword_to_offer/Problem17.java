@@ -11,6 +11,7 @@ public class Problem17 {
         if(n <= 0){
             return;
         }
+        // 用字符数组表达大数，此时数组索引的由低到高对应大数的高位到地位，与物理位置相同
         char[] number = new char[n];
         print1ToMaxOfNDigits(number, 0);
     }
@@ -38,7 +39,7 @@ public class Problem17 {
     }
 
     public static void main(String[] args){
-        int n = 2;
+        int n = 3;
         Problem17 problem17 = new Problem17();
         problem17.print1ToMaxOfNDigits(n);
     }
