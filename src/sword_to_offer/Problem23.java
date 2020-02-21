@@ -28,7 +28,7 @@ public class Problem23 {
         do {
             p1 = p1.next.next;
             p2 = p2.next;
-        } while (p1 != null && p1.next != null && p1 != p2);
+        } while (p1 != null && p1.next != null && p1 != p2);  // 注意循环终止条件
         if (p1 != p2){
             return null; // 说明链表中没有环
         }
