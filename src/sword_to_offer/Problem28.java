@@ -14,7 +14,7 @@ public class Problem28 {
         return isSymmetrical(pRoot.left, pRoot.right);
     }
 
-    // pRoot1和pRoot2为每次递归调用的根节点
+    // pRoot1和pRoot2为每次递归调用的一对对称的根节点
     private boolean isSymmetrical(TreeNode pRoot1, TreeNode pRoot2){
         if (pRoot1 == null && pRoot2 == null){
             return true;
