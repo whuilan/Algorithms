@@ -1,7 +1,7 @@
 package sword_to_offer;
 
 /**
- * P65面试题8：二叉树的下一个结点
+ * P65面试题8：二叉树的(中序遍历序列)下一个结点
  */
 public class Problem8 {
     public class TreeLinkNode {

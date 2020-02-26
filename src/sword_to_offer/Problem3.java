@@ -19,7 +19,7 @@ public class Problem3 {
 
     // 法二：将值为i的元素调整到第i个位置上,时间复杂度为O(N),空间复杂度为O(1)，加入对非法输入的检测
     public boolean duplicate(int numbers[],int length,int [] duplication) {
-        if(numbers == null || length < 0){
+        if(numbers == null || length <= 0){
             return false;
         }
         for(int i = 0;i < length;i++){
@@ -41,6 +41,28 @@ public class Problem3 {
             }
         }
         return false;
+    }
+
+    public boolean duplicate2(int numbers[],int length,int [] duplication) {
+        if(numbers == null || length <= 0){
+            return false;
+        }
+        for(int i = 0; i < length; i++){
+            while(i != numbers[i]){
+                if(numbers[i] == numbers[numbers[i]]){
+                    duplication[0] = numbers[i];
+                    return true;
+                }
+                exch(numbers, i, numbers[i]);
+            }
+        }
+        return false;
+    }
+
+    public void exch(int[] nums, int i, int j){
+        int t = nums[i];
+        nums[i] = nums[j];
+        nums[j] = t;
     }
 
     public static void main(String[] args){
