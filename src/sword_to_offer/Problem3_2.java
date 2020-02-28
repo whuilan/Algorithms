@@ -13,7 +13,7 @@ public class Problem3_2 {
             int mid = start + (end - start) / 2;
             int count = countRange(nums, length, start, mid);
             // 注意循环到最后的截止情况
-            if(start == mid){
+            if(start == end){
                 if(count > 1){
                     return start;
                 }
@@ -45,7 +45,7 @@ public class Problem3_2 {
     }
 
     public static void main(String[] args){
-        int[] nums = {6, 5, 4, 3, 2, 6, 2};
+        int[] nums = {2,4,5,4,3,2,6,7};
         int length = nums.length;
         int count = getDuplication(nums, length);
         System.out.println(count);

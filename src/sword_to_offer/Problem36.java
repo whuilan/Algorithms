@@ -16,7 +16,7 @@ public class Problem36 {
         return pRootOfTree;
     }
 
-    private TreeNode RecurConvert(TreeNode node){
+    private TreeNode RecurConvert(TreeNode node){  // 和归并排序思路相同
         if (node == null){
             return null;
         }
