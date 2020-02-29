@@ -1,7 +1,5 @@
 package sword_to_offer;
 
-import edu.princeton.cs.algs4.StdOut;
-
 /**
  * P114 打印从1到最大的n位（十进制）数，其实就是n个从0到9的全排列，用递归的方法实现全排列,
  * 数字的每一位都可能是从0到9中的一个数，然后设置下一位，类似深度优先搜索
