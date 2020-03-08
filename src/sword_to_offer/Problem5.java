@@ -5,7 +5,7 @@ package sword_to_offer;
  */
 public class Problem5 {
     public static String replaceSpace(StringBuffer str) {
-        if(str == null){
+        if(str == null || str.length() == 0){
             return null;
         }
         int P1 = str.length() - 1;
