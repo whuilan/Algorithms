@@ -4,7 +4,7 @@ package sword_to_offer;
  * P96 动态规划与贪婪算法：剪绳子
  */
 public class Problem14 {
-    // 法一：动态规划
+    // 法一：动态规划，时间复杂度为O(n^2)，空间复杂度为O(n)
     public static int cutRope0(int target) {
         if(target <= 1){
             return 0;
@@ -16,7 +16,8 @@ public class Problem14 {
             return 2;
         }
         /*
-        product[i]表示把长度为i（i > 3）的绳子剪成若干段之后各段长度的乘积
+        product[i]表示把长度为i（i > 3）的绳子剪成若干段之后各段长度乘积的最大值，
+        就是将各个子问题的最优解存储到（一维数组）中
          */
         int[] product = new int[target + 1];
         product[1] = 1;
@@ -36,7 +37,7 @@ public class Problem14 {
         return product[target];
     }
 
-    // 法二：贪婪算法
+    // 法二：贪婪算法，时间复杂度和空间复杂度均为O(1)
     public static int cutRope(int target) {
         if(target <= 1){
             return 0;
