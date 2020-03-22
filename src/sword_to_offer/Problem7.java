@@ -40,8 +40,8 @@ public class Problem7 {
     }
 
     public static void main(String[] args){
-        int[] pre = {3, 9, 20, 15, 7};
-        int[] in = {9, 3, 15, 20, 7};
+        int[] pre = {1,2,4,7,3,5,6,8};
+        int[] in = {4,7,2,1,5,3,8,6};
         Problem7 tree = new Problem7();
         TreeNode reConstructedTree = tree.reConstructBinaryTree(pre, in);
         System.out.println("success!");

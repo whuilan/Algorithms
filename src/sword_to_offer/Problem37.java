@@ -1,10 +1,12 @@
 package sword_to_offer;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * P194序列化（和反序列化）二叉树,注意二叉树节点中的值不一定全是0-9的个位数，还可能有几十，几百等等
  */
 public class Problem37 {
-
     private int index = 0;
 
     String Serialize(TreeNode root) {
@@ -14,25 +16,42 @@ public class Problem37 {
         return root.val + "!" + Serialize(root.left) + "!" + Serialize(root.right);
     }
 
-    TreeNode Deserialize(String str) {
-        if (str == null || str.length() == 0){
-            return null;
-        }
-        String[] splitStr = str.split("!");
-        return DeserializeTreeFromString(splitStr);
+    // 法一：使用全局变量设置一个索引来记录反序列化的位置
+    public TreeNode deserialize(String data) {
+        String[] vals = data.split("!");
+        return deserialize(vals);
     }
 
-    private TreeNode DeserializeTreeFromString(String[] strArray){
-//        if (index >= strArray.length){  // 没有必要，因为最后一个肯定是"#"，会返回null的，不会到达长度
-//            return null;
-//        }
-        String singleNodeValue = strArray[index++];
-        if (singleNodeValue.equals("#")){
+    private TreeNode deserialize(String[] vals){
+        String firstVal = vals[index++];
+        if (firstVal.equals("#")){
             return null;
         }
-        TreeNode root = new TreeNode(Integer.parseInt(singleNodeValue));
-        root.left = DeserializeTreeFromString(strArray);
-        root.right = DeserializeTreeFromString(strArray);
+        int rootVal = Integer.parseInt(firstVal);
+        TreeNode root = new TreeNode(rootVal);
+        root.left = deserialize(vals);
+        root.right = deserialize(vals);
+        return root;
+    }
+
+    // 法二：不使用全局
+    public TreeNode Deserialize(String data){
+        String[] vals = data.split("!");
+        Queue<String> queue = new LinkedList<>();
+        for (String str : vals){
+            queue.offer(str);
+        }
+        return Deserialize(queue);
+    }
+
+    private TreeNode Deserialize(Queue<String> queue){
+        String firstVal = queue.poll();
+        if (firstVal.equals("#")){
+            return null;
+        }
+        TreeNode root = new TreeNode(Integer.valueOf(firstVal));
+        root.left = Deserialize(queue);
+        root.right = Deserialize(queue);
         return root;
     }
 

@@ -26,4 +26,17 @@ public class Problem9 {
 
         return stack2.pop();
     }
+
+    //另一个版本，队列为空时返回-1
+    public int deleteHead() {
+        if (!stack2.isEmpty()){    // stack2不为空时直接弹出stack2的栈顶元素
+            return stack2.pop();
+        }
+        else {                     // stack2为空时将stack1中的逐个弹出再压入stack2，然后再弹出stack2的栈顶元素
+            while (!stack1.isEmpty()){
+                stack2.push(stack1.pop());
+            }
+            return stack2.isEmpty() ? -1 : stack2.pop();
+        }
+    }
 }
