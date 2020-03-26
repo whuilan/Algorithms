@@ -21,6 +21,7 @@ public class Problem40 {
         return list;
     }
 
+    // 递归调用：在索引范围为(lo..hi)之中查找j==k
     public void GetLeastNumbers_Solution(int[] input, int k, int lo, int hi){
         if (lo >= hi){
             return;
@@ -62,6 +63,7 @@ public class Problem40 {
         input[j] = t;
     }
 
+    // 法二：优先队列（最大堆）
     public ArrayList<Integer> GetLeastNumbers_Solution2(int [] input, int k) {
         if (input == null || input.length == 0 || k <= 0 || k > input.length){
             return new ArrayList<>();

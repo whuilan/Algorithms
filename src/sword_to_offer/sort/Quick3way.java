@@ -1,7 +1,7 @@
 package sword_to_offer.sort;
 
 /**
- * 三向切分的快速排序（基于荷兰国旗优化的快速排序）
+ * 三向切分的快速排序（基于荷兰国旗优化的快速排序）；适合存在大量重复元素的数组排序!
  */
 public class Quick3way {
     public static void sort(Comparable[] a){
@@ -9,10 +9,10 @@ public class Quick3way {
     }
 
     private static void sort(Comparable[] a, int lo, int hi){
-        while (hi <= lo){
+        if (hi <= lo){
             return;
         }
-        int lt = lo, i = lo + 1, gt = hi;  // i为扫描指针
+        int lt = lo, i = lo + 1, gt = hi;  // i为扫描指针，没有j!
         Comparable v = a[lo];
         while (i <= gt){
             int cmp = a[i].compareTo(v);

@@ -1,7 +1,8 @@
 package sword_to_offer.sort;
 
 /**
- * 选择/冒泡排序，需要大约N^2/2次比较和N次交换，不需要额外的空间
+ * 选择/冒泡排序，需要大约n^2/2次比较和N次交换，不需要额外的空间(即空间复杂度
+ * 为O(1)，称为原地排序)
  */
 public class Selection {
     public static void sort(Comparable[] a){
