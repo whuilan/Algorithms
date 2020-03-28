@@ -2,14 +2,15 @@ package sword_to_offer;
 
 /**
  * P114 打印从1到最大的n位（十进制）数，其实就是n个从0到9的全排列，用递归的方法实现全排列,
- * 数字的每一位都可能是从0到9中的一个数，然后设置下一位，类似深度优先搜索
+ * 数字的每一位都可能是从0到9中的一个数，然后设置下一位，类似深度优先搜索，递归结束的条件是
+ * 我们已经设置了数字的最后一位。
  */
 public class Problem17 {
     public void print1ToMaxOfNDigits(int n){
         if(n <= 0){
             return;
         }
-        // 用字符数组表达大数，此时数组索引的由低到高对应大数的高位到地位，与物理位置相同
+        // 用字符数组表达大数，此时数组索引的由低到高对应大数的高位到低位，与物理位置相同
         char[] number = new char[n];
         print1ToMaxOfNDigits(number, 0);
     }

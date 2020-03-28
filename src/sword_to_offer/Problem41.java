@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
- * P214数据流中的中位数,时间复杂度为O(logN)，得到中位数复杂度为O(1)
+ * P214数据流中的中位数,插入时间复杂度为O(logN)，得到中位数复杂度为O(1)
  */
 public class Problem41 {
     PriorityQueue<Integer> leftMaxPQ = new PriorityQueue<>(Comparator.reverseOrder());

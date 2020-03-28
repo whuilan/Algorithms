@@ -22,15 +22,14 @@ public class Problem38 {
             String str = String.valueOf(chars);
             list.add(str);
             return;
-        }else {
-            for (int j = i; j < chars.length; j++){
-                if (j > i && chars[j] == chars[i]){  // 避免和i后面的相同值交换
-                    continue;
-                }
-                swap(chars, i, j);
-                Permutation(chars, i + 1, list);
-                swap(chars, i, j); // 需要保证i处的字符确定再与下一个j+1的字符交换，因此每一次循环最后需要交换回来
+        }
+        for (int j = i; j < chars.length; j++){
+            if (j > i && chars[j] == chars[i]){  // 避免和i后面的相同值交换
+                continue;
             }
+            swap(chars, i, j);
+            Permutation(chars, i + 1, list);
+            swap(chars, i, j); // 需要保证i处的字符确定再与下一个j+1的字符交换，因此每一次循环最后需要交换回来
         }
     }
 
@@ -42,7 +41,7 @@ public class Problem38 {
     }
 
     public static void main(String[] args){
-        String string = "abc";
+        String string = "bac";
         Problem38 problem38 = new Problem38();
         ArrayList<String> arrayList = problem38.Permutation(string);
         for(String s : arrayList){

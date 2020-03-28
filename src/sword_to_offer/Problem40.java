@@ -63,7 +63,7 @@ public class Problem40 {
         input[j] = t;
     }
 
-    // 法二：优先队列（最大堆）
+    // 法二：优先队列（最大堆），时间复杂度为O(nlogk)(<<O(nlogn))
     public ArrayList<Integer> GetLeastNumbers_Solution2(int [] input, int k) {
         if (input == null || input.length == 0 || k <= 0 || k > input.length){
             return new ArrayList<>();
