@@ -1,7 +1,7 @@
 package sword_to_offer;
 
 /**
- * P263数字在排序数组中出现的次数
+ * P263数字在排序数组中出现的次数，时间复杂度为O(logN)
  */
 public class Problem53 {
     public int GetNumberOfK(int [] array , int k) {
