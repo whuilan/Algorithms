@@ -30,7 +30,7 @@ public class Problem5 {
     }
 
     public static void  main(String[] args){
-        StringBuffer str = new StringBuffer("I  love ");
+        StringBuffer str = new StringBuffer("I love you!");
         String replacedStr = replaceSpace(str);
         System.out.println(replacedStr);
     }
