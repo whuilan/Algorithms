@@ -48,6 +48,11 @@ public class Problem13 {
     public static void main(String[] args){
         int threshold = 2, rows = 2, cols = 3;
         Problem13 problem13 = new Problem13();
+        // 测试单独一个整数类型传递给函数进行处理后，该整数本身的值是否会发生变化，
+        // 结果证明不会，函数里是另外的变量
+//        int n = 35;
+//        int ds = problem13.getDigitSum(n);
+//        System.out.println("n:" + n + " ds:" + ds);
         int moves = problem13.movingCount(threshold, rows, cols);
         System.out.println(moves);
     }
