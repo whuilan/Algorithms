@@ -3,23 +3,22 @@ package sword_to_offer;
 import java.util.ArrayList;
 
 /**
- * P182二叉树中和为某一值的路径
+ * P182二叉树中和为某一值的路径，前序遍历
  */
 public class Problem34 {
     private ArrayList<ArrayList<Integer>> paths;
+    private int sum;
 
     public ArrayList<ArrayList<Integer>> FindPath(TreeNode root, int target) {
         paths = new ArrayList<>();
-        if (root == null){
-            return paths;
+        if (root != null) {
+            ArrayList<Integer> path = new ArrayList<>();
+            FindPath(root, target, path);
         }
-        ArrayList<Integer> path = new ArrayList<>();
-        int sum = 0;
-        FindPath(root, target, path, sum);
         return paths;
     }
 
-    private void FindPath(TreeNode node, int target, ArrayList<Integer> path, int sum){
+    private void FindPath(TreeNode node, int target, ArrayList<Integer> path){
         if (node == null){
             return;
         }
@@ -33,10 +32,11 @@ public class Problem34 {
             }
         }
         else {  // 当前节点不是叶节点，则继续访问它的子节点
-            FindPath(node.left, target,  path, sum);
-            FindPath(node.right, target, path, sum);
+            FindPath(node.left, target,  path);
+            FindPath(node.right, target, path);
         }
         // 当前节点（不管是不是叶节点）访问结束（说明经过这个节点的路径都已经计算过了）后应该回到其父节点
+        sum -= node.val;
         path.remove(path.size() - 1);
     }
 
