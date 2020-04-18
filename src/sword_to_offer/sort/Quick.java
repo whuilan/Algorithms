@@ -2,17 +2,33 @@ package sword_to_offer.sort;
 
 import edu.princeton.cs.algs4.StdRandom;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
- * 快速排序，快排所需要的时间也与NlogN成正比(~2NlogN次比较)，比较次数多于归并排序，
- * 但在内循环中移动数据的次数更少，因此快速排序比归并排序要快。
+ * 快速排序，快排平均所需要的时间也与NlogN成正比(~2NlogN次比较)，空间复杂为:O(logn)，
+ * 快排最好的情况就是每次都正好能将数组对半分，最优时间复杂度为O(nlogn),空间：O(logn)
+ * 最差的情况就是数组本来就是有序的或者倒序的，最差时间复杂度为O(n^2),空间复杂度为O(n)
+ * 比较次数多于归并排序,但在内循环中移动数据的次数更少，因此快速排序比归并排序要快。
  * 改进：1 排序小数组(5-15)时切换到插入排序
  * 2 三取样切分
  * 3 熵最优的排序，适用于含有大量重复元素的数组排序，又称为荷兰国旗问题
  */
 public class Quick {
     public static void sort(Comparable[] a){
-        StdRandom.shuffle(a);             // 打乱a中元素的顺序，消除对输入的依赖
+        Collections.shuffle(Arrays.asList(a));  // 打乱a中元素的顺序，消除对输入的依赖
         sort(a, 0, a.length - 1);
+        // 注意：如果传进来的时int[]，则打乱数组排序的方法如下，且在最前面需要引入import java.util.*;
+//        List<Integer> list = new ArrayList<>();
+//        for (int val : arr){
+//            list.add(Integer.valueOf(val));
+//        }
+//        Collections.shuffle(list);
+//        for (int i = 0;i < arr.length; i++){
+//            arr[i] = list.get(i);
+//        }
     }
 
     private static void sort(Comparable[] a, int lo, int hi){
@@ -59,7 +75,8 @@ public class Quick {
     }
 
     public static void main(String[] args){
-        String[] a = {"Q", "U", "I", "C", "K", "S", "O","R","T","E","X","A","M","P","L","E"};
+        // String[] a = {"Q", "U", "I", "C", "K", "S", "O","R","T","E","X","A","M","P","L","E"};
+        Integer[] a = {2,3,6,5,4};
         sort(a);
         System.out.println("Finish!");
     }

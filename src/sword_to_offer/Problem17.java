@@ -21,7 +21,8 @@ public class Problem17 {
             return;
         }
         for(int i = 0; i < 10; i++){
-            num[digit] = (char) (i + '0'); // 整数i加上0的ASCII编码才成表示成字符的'i'
+            num[digit] = (char) (i + '0');
+            // num[digit] = (char) (i + '0'); // 整数i加上0的ASCII编码才成表示成字符的'i'
             print1ToMaxOfNDigits(num, digit + 1);
         }
     }

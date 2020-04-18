@@ -3,7 +3,7 @@ package sword_to_offer;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * P100 位运算：二进制中1的个数
+ * P100 位运算：整数的二进制中1的个数
  */
 public class Problem15 {
     // 法一：将1和该整数的二进制表示按位与
@@ -41,7 +41,7 @@ public class Problem15 {
 
 
     public static void main(String[] args){
-        int n = 12;
+        int n = 13;
         int c = NumberOf1(n);
         StdOut.println(c);
     }

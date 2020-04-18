@@ -41,7 +41,7 @@ public class Problem38 {
     }
 
     public static void main(String[] args){
-        String string = "bac";
+        String string = "abc";
         Problem38 problem38 = new Problem38();
         ArrayList<String> arrayList = problem38.Permutation(string);
         for(String s : arrayList){

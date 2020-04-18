@@ -29,9 +29,25 @@ public class Problem53_2 {
         return -1;
     }
 
+    public static int missingNumber2(int[] nums) {
+        if (nums != null && nums.length > 0){
+            int lo = 0, hi = nums.length;
+            while (lo < hi){
+                int mid = lo + (hi - lo) / 2;
+                if (nums[mid] == mid){
+                    lo = mid + 1;
+                }else {
+                    hi = mid;
+                }
+            }
+            return lo;
+        }
+        return -1;
+    }
+
     public static void main(String[] args){
-       int[] a = {0,1,3,4,5,6,7,8,9};
-       int m = missingNumber(a);
+       int[] a = {0,1,3,4,5};
+       int m = missingNumber2(a);
        System.out.println(m);
     }
 }

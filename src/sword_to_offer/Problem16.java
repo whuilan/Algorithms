@@ -47,7 +47,7 @@ public class Problem16 {
     }
 
     public static void main(String[] args){
-        double a = 2;
+        double a = 3;
         int b = 5;
         Problem16 problem16 = new Problem16();
         try{
