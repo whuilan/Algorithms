@@ -4,6 +4,7 @@ package sword_to_offer;
  * P127表示数值的字符串, 遵循模式A[.[B]][e|EC]或.B[e|EC]，其中A为数值的整数部分，B为小数部分，
  * C为e或E后面的指数部分。此处方括号[]表示其中的内容是可选的，可要可不要，A和C为整数（可正可负），
  * B为正整数。注意要时刻检查数组是否越界
+ * 在leetcode上还存在着字符串首尾为空的情况，即"1 "也表示有效数字，因此要先s = s.trim();去掉首尾空格
  */
 public class Problem20 {
     // 法一： 剑指offer上的思路
@@ -58,12 +59,12 @@ public class Problem20 {
         if (str == null || str.length == 0){
             return false;
         }
-        String string = new String(str); // 字符数组转换成字符串
-        return string.matches("[+-]?\\d*(\\.\\d*)?([eE][+-]?\\d+)?");
+        String s = new String(str); // 字符数组转换成字符串
+        return s.matches("[+-]?\\d+(\\.\\d*)?([Ee][+-]?\\d+)?") || s.matches("[+-]?\\d*\\.\\d+([Ee][+-]?\\d+)?");
     }
 
     public static void main(String[] args){
-        char[] str = {'1', '.', '2'};
+        char[] str = {'+', '1'};
         Problem20 problem20 = new Problem20();
         // int a = str[3] - '0';
         if(problem20.isNumeric_v2(str)){

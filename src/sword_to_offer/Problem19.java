@@ -41,9 +41,8 @@ public class Problem19 {
         // 则进行下一个字符的比较，不匹配则直接返回false
         if (strIndex != str.length && (str[strIndex] == pattern[patIndex] || pattern[patIndex] == '.')){
             return matchCore(str, pattern, strIndex + 1, patIndex + 1);
-        }else {
-            return false;
         }
+        return false;
     }
 
     // 法二，cyc解法，没看懂
@@ -73,11 +72,11 @@ public class Problem19 {
     }
 
     public static void main(String[] args){
-        char[] str = {};
+        char[] str = {'a', 'a'};
         char[] pattern = {'.', '*'};
-        char[] pattern2 = {'a', '.', 'a'};
+        char[] pattern2 = {'a', 'b','*','a','.'};
         Problem19 problem19 = new Problem19();
-        boolean isMatch = problem19.match(str, pattern);
+        boolean isMatch = problem19.match(str, pattern2);
         if(isMatch){
             StdOut.println("match");
         }else {
