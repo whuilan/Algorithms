@@ -6,6 +6,7 @@ import java.util.Map;
 /**
  * 两数之和：给定一个整数数组 nums 和一个目标值 target，
  * 请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标
+ * 另见剑指57和15（三数之和）
  */
 public class Solution1 {
     // 法一：双层循环的暴力解法，时间复杂度为O(n^2)，空间复杂度为O(1)
@@ -27,7 +28,7 @@ public class Solution1 {
         return re;
     }
 
-    // 空间换时间：借助HashMap哈希表，将查找时间从O(n)降低到O(1)，时间复杂度为O(n)，空间复杂度也为O(n)
+    // 法二改进：（空间换时间）借助HashMap哈希表，将查找时间从O(n)降低到O(1)，时间复杂度为O(n)，空间复杂度也为O(n)
     public static int[] twoSum(int[] nums, int target) {
         if (nums != null &&  nums.length >= 2){
             Map<Integer, Integer> map = new HashMap<>();
