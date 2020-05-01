@@ -10,7 +10,7 @@ import java.util.List;
  * 另见leetcode151
  */
 public class Problem58 {
-    // 法一（第一反应）：需要借助额外空间，面试时不宜采用
+    // 法一（第一反应）：需要借助额外空间和各种内置api，面试官应该不会满意，但还是可以先说出来
     public String ReverseSentence0(String str) {
         if(str == null){
             return null;
