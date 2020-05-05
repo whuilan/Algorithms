@@ -7,7 +7,8 @@ import java.util.ArrayList;
  * 的第K个节点，即二叉搜索树的中序遍历序列是一个排序的递增序列
  */
 public class Problem54 {
-    // 法一：自己写的，获得完整的中序遍历序列再输出其第k项，缺点：需要额外的空间ArrayList
+    // 法一：自己写的，获得完整的中序遍历序列再输出其第k项，
+    // 缺点：需要额外的空间ArrayList，空间复杂度为O(n)
     private ArrayList<TreeNode> list;
     TreeNode KthNode1(TreeNode pRoot, int k)
     {

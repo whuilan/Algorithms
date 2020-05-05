@@ -14,7 +14,7 @@ public class Solution15 {
         if (nums != null && nums.length >= 3){
             int N = nums.length;
             Map<Integer, Integer> map = new HashMap<>();
-            Arrays.sort(nums);
+            Arrays.sort(nums); // 排序是为了防止重复！
             for (int i = 0; i < N; i++){
                 map.put(nums[i], i);
             }

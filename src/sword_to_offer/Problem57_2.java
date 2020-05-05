@@ -14,33 +14,29 @@ public class Problem57_2 {
             ArrayList<Integer> list = new ArrayList<>();
             list.add(lo);
             list.add(hi);
+            int curSum = lo + hi;
             while (lo < middle){
-                int currentSum = getSumOfSeq(list);
-                if (sum > currentSum){
+                // int currentSum = getSumOfSeq(list);
+                if (curSum < sum){
                     hi++;
                     list.add(hi);
+                    curSum += hi;
                 }
-                else if (sum < currentSum){
+                else if (curSum > sum){
                     list.remove(0);
+                    curSum -= lo;
                     lo++;
                 }
                 else {
                     lists.add(new ArrayList<>(list));
                     hi++;
                     list.add(hi);
+                    curSum += hi;
                 }
             }
 
         }
         return lists;
-    }
-
-    private int getSumOfSeq(ArrayList<Integer> list){
-        int sum = 0;
-        for (int num : list){
-            sum += num;
-        }
-        return sum;
     }
 
     public static void main(String[] args){

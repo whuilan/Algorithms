@@ -37,7 +37,7 @@ public class Problem58 {
         int left = 0, right = 0;
         // 第二步：以空格为界，翻转每个单词，这样单词中的字符顺序又被翻转回来了
         while (right <= N){
-            if (right == N || chars[right] == ' '){
+            if (right == N || chars[right] == ' '){ // 说明一个单词已经到达末尾
                 reverseCharArray(chars, left, right - 1);
                 left = right + 1;
             }
@@ -58,10 +58,10 @@ public class Problem58 {
     }
 
     public static void main(String[] args){
-        String str = " ";
-        // String str = "a good   boy";
+        // String str = " ";
+        String str = "a good   boy";
         Problem58 problem58 = new Problem58();
-        String reverseStr = problem58.ReverseSentence(str);
+        String reverseStr = problem58.ReverseSentence0(str);
         System.out.println(reverseStr);
     }
 }

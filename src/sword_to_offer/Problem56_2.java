@@ -11,7 +11,7 @@ public class Problem56_2 {
         }
         int singleNum = 0;
         // 分别求二进制各个位上的和
-        for (int i = 0; i < 31; i++){ // i表示位数指针
+        for (int i = 0; i < 32; i++){ // i表示位数指针
             int digitSum = 0;
             for (int j = 0; j < nums.length; j++){
                 digitSum += nums[j] & 1;

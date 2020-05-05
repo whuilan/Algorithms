@@ -8,7 +8,7 @@ package sword_to_offer;
  * 求放到箱子中的物品的最大填充体积。因此动态规划的公式也和背包问题相同，设dp[i][j]
  * 表示前i个物品任取若干个装到体积为j的箱子中时的最大填充体积，则：
  * dp[i][j]=dp[i-1][j]                               (j<w[i])
- * dp[i][j]=max{dp[i-1][j],dp[i-1][j-w[i]]+v[i]}     (j≥w[i])
+ * dp[i][j]=max{dp[i-1][j],dp[i-1][j-v[i]]+v[i]}     (j≥w[i])
  */
 public class boxFilling {
     public static int minRest(int V, int n, int[] v){

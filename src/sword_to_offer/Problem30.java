@@ -3,7 +3,8 @@ package sword_to_offer;
 import java.util.Stack;
 
 /**
- * P165包含min函数的栈，关键：使用一个辅助栈来保存每次压入元素时的当前栈中最小元素。
+ * P165包含min函数的栈，在该栈中，调用min、push及pop的时间复杂度都是O(1)
+ * 关键：使用一个辅助栈来保存每次压入元素时的当前栈中最小元素。
  */
 public class Problem30 {
     // 定义数据栈和辅助栈
