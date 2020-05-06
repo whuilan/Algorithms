@@ -8,6 +8,7 @@ public class Problem55 {
         if (root == null){
             return 0;
         }
+        // 相当于前序遍历
         return 1 + Math.max(TreeDepth(root.left), TreeDepth(root.right));
     }
 }

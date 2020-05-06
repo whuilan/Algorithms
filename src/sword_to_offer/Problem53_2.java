@@ -1,7 +1,8 @@
 package sword_to_offer;
 
 /**
- * P266 0~n-1中缺失的数字
+ * P266 0~n-1中缺失的数字，其实就是在排序数组中找出第一个值和下标不相等的元素
+ * 用二分查找法，时间复杂度为为对数级别：O(logN)
  */
 public class Problem53_2 {
     public static int missingNumber(int[] nums) {

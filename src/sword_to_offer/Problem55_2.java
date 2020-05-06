@@ -1,10 +1,9 @@
 package sword_to_offer;
 
-import sun.reflect.generics.tree.Tree;
-
 /**
- * P273判断一颗二叉树是不是平衡二叉树: 后序遍历二叉树，一边记录深度一边判断，
- * 这样所有的节点都只用遍历一遍
+ * P273判断一颗二叉树是不是平衡二叉树（任意节点的左、右子树的深度相差不超过1）
+ * 后序（左右根）遍历二叉树，一边记录深度（遍历）一边判断
+ * 每个节点是不是平衡的，这样所有的节点都只用遍历一遍
  */
 public class Problem55_2 {
     private boolean isBalanced = true;
@@ -20,7 +19,9 @@ public class Problem55_2 {
         }
         int leftLen = depth(node.left);
         int rightLen = depth(node.right);
-        isBalanced = Math.abs(leftLen - rightLen) > 1 ? false : true;
+        if (Math.abs(leftLen - rightLen) > 1){
+            isBalanced = false;
+        }
         return 1 + Math.max(leftLen, rightLen);
     }
 
