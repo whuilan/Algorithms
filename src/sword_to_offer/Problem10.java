@@ -2,6 +2,9 @@ package sword_to_offer;
 
 /**
  * P74面试题10，斐波那契数列
+ * f(n)=0, n=0
+ * f(n)=1,n=1
+ * f(n)=f(n-1)+f(n-2), n>1
  */
 public class Problem10 {
     public static int Fibonacci(int n) {
