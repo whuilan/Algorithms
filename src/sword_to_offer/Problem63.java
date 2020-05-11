@@ -21,11 +21,11 @@ public class Problem63 {
             maxProfit = Math.max(maxProfit, prices[i]-curMin);
             curMin = Math.min(curMin, prices[i]);
         }
-        return maxProfit > 0 ? maxProfit : 0;
+        return maxProfit;
     }
 
     public static void main(String[] args){
-        int[] prices = {7,6,4,3,1};
+        int[] prices = {7,1,5,3,6};
         int max = maxProfit(prices);
         System.out.println(max);
     }
