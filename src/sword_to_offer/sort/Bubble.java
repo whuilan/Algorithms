@@ -9,7 +9,8 @@ public class Bubble {
             return;
         }
         int n = a.length;
-        for (int i = n -1; i >= 0; i--){
+        // 每次都把最大的元素排到最右边，其他位置的元素不确定。
+        for (int i = n -1; i > 0; i--){
             for (int j = 0; j < i; j++){
                 if (less(a[j + 1], a[j])){
                     exch(a, j , j + 1);

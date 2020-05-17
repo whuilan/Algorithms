@@ -5,6 +5,7 @@ package sword_to_offer;
  */
 public class Problem21 {
     // 函数一，书上的，不要求奇数和偶数的相对位置不变，和我想的一模一样，棒棒的~
+    // 时间复杂度为O(n)，空间复杂度为O(1)
     public void reOrderArray(int [] array) {
         if (array == null || array.length == 0){
             return;
@@ -53,10 +54,27 @@ public class Problem21 {
         }
     }
 
+    // 函数三，借助冒泡思想，每次都将当前偶数上浮到当前最右边，时间复杂度为O(n^2)，
+    // 空间复杂度为O(1)，与函数二相比，相当于时间换空间。
+    public void reOrderArray3(int [] array) {
+        if (array == null || array.length <= 1){
+            return;
+        }
+        int n = array.length;
+        for (int i = n - 1; i > 0; i--){
+            for (int j = 0; j < i; j++){
+                if (isEven(array[j]) && !isEven(array[j+1])){
+                    // 若相邻的两个元素，偶数在奇数前面的情况，则调换位置
+                    exch(array, j, j+1);
+                }
+            }
+        }
+    }
+
     public static void main(String[] args){
         int[] arr = {1, 2, 3, 4, 5};
         Problem21 problem21 = new Problem21();
-        problem21.reOrderArray2(arr);
+        problem21.reOrderArray3(arr);
         for(int n : arr){
             System.out.print(n + " ");
         }
