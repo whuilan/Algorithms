@@ -29,6 +29,7 @@ public class Problem26 {
         if (root1 == null){  // 注意判断是否重复，能通过第一个if那肯定满足root2 != null
             return false;
         }
+        // 根节点相等了再递归地去比较左右子树中的节点是否相等
         if (root1.val == root2.val){
             return DoesTree1HasTree2(root1.left, root2.left)
                     && DoesTree1HasTree2(root1.right, root2.right);

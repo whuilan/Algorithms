@@ -16,13 +16,14 @@ public class Problem59 {
         ArrayList<Integer> list = new ArrayList<>();
         if (num != null && num.length != 0 && size > 0 && size <= num.length) {
             Deque<Integer> deque = new LinkedList<>();
-            // 窗口滑动的过程就类似于队列的进入和删除元素的过程！
+            // 窗口滑动(即遍历数组)的过程就类似于队列的进入和删除元素的过程，在这个过程中更新保存
+            // 最大值的双端队列！
             for (int i = 0; i < num.length; i++){
                 // 队列当前头部的元素索引已经不属于当前滑动窗口，应该删除头部
                 if (!deque.isEmpty() && i - deque.peekFirst() >= size){
                     deque.pollFirst();
                 }
-                // 新加入的元素比队列当前尾部元素大时，尾部元素不可能时最大元素，因此删除队列尾部
+                // 新加入的元素比队列当前尾部元素大时，尾部元素不可能最是大元素，因此删除队列尾部
                 while (!deque.isEmpty() && num[i] >= num[deque.peekLast()]){
                     deque.pollLast();
                 }

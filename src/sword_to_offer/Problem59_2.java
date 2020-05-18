@@ -17,6 +17,7 @@ public class Problem59_2 {
     Deque<Integer> maxDeque;
     
     public Problem59_2() {
+        // 注意Queue和Deque都是接口（其中Deque继承了Queue），需要用LinkedList来进行实例化
         dataQueue = new LinkedList<>();
         maxDeque = new LinkedList<>();
     }
@@ -31,8 +32,9 @@ public class Problem59_2 {
 
     public void push_back(int value) {
         dataQueue.offer(value);
-        // 如果新加入的值比当前存储最大值的双端队列的尾部元素大，那么删除队列尾部的数
-        // 因为它们不可能是最大值
+        // 添加元素的过程中更新maxDeque:如果新加入的值比当前存储最大值的双端队列的尾部元素大，
+        // 那么删除队列尾部的数,因为它们不可能是最大值。如果比尾部元素小，则该元素将来可能成为
+        // 最大值，因此直接添加到双端队列的尾部。
         while (!maxDeque.isEmpty() && value > maxDeque.peekLast()){
             maxDeque.pollLast();
         }
@@ -43,7 +45,7 @@ public class Problem59_2 {
 
     public int pop_front() {
         if (!dataQueue.isEmpty()){
-            int peek = dataQueue.remove();
+            int peek = dataQueue.poll();
             // 如果队列头部元素等于当前最大值，说明最大值被弹出，需要将maxDeque栈顶的最大值也弹出
             if(peek == maxDeque.peekFirst()){
                 maxDeque.pollFirst();

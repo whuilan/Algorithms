@@ -1,5 +1,7 @@
 package sword_to_offer;
 
+import  sword_to_offer.ListNode;
+
 /**
  * P139链表中环的入口节点，同样要用两个指针P1、P2
  * （1）首先要判断链表中是否含有环，此时两个指针都从首节点开始遍历，但是速度不同：P1一次走两步，
@@ -11,7 +13,7 @@ package sword_to_offer;
  * 从相遇点开始遍历，P1、P2再次相遇的地方即为环的入口节点，虽然是对的，但不知如何验证）
  */
 public class Problem23 {
-    public static class ListNode {
+      private class ListNode {
         int val;
         ListNode next = null;
 
@@ -80,20 +82,20 @@ public class Problem23 {
     }
 
     public static void main(String[] args){
-        ListNode node1 = new ListNode(1);
-        ListNode node2 = new ListNode(2);
-        ListNode node3 = new ListNode(3);
-        ListNode node4 = new ListNode(4);
-        ListNode node5 = new ListNode(5);
-        ListNode node6 = new ListNode(6);
-        node1.next = node2;
-        node2.next = node3;
-        node3.next = node4;
-        node4.next = node5;
-        node5.next = node6;
-        node6.next = node4;
-        Problem23 problem23 = new Problem23();
-        ListNode entryNode = problem23.EntryNodeOfLoop(node1);
+//        ListNode node1 = new sword_to_offer.ListNode(1);
+//        ListNode node2 = new ListNode(2);
+//        ListNode node3 = new ListNode(3);
+//        ListNode node4 = new ListNode(4);
+//        ListNode node5 = new ListNode(5);
+//        ListNode node6 = new ListNode(6);
+//        node1.next = node2;
+//        node2.next = node3;
+//        node3.next = node4;
+//        node4.next = node5;
+//        node5.next = node6;
+//        node6.next = node4;
+//        Problem23 problem23 = new Problem23();
+//        ListNode entryNode = problem23.EntryNodeOfLoop(node1);
         System.out.println();
     }
 }
