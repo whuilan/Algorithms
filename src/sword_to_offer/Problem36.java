@@ -1,9 +1,32 @@
 package sword_to_offer;
 
 /**
- * P191 二叉搜索树与双向链表
+ * P191 二叉搜索树与（排序的）双向链表
+ * 核心：中序遍历，在遍历过程中改变当前节点和上一个节点的指向，不断递归下去
  */
 public class Problem36 {
+
+    private TreeNode preNode = null;
+    private TreeNode head = null;
+    // cyc解法，简洁巧妙！
+    public TreeNode Convert1(TreeNode root) {
+        inOrder(root);
+        return head;
+    }
+
+    private void inOrder(TreeNode curNode) {
+        if (curNode == null)
+            return;
+        inOrder(curNode.left);
+        curNode.left = preNode;
+        if (preNode != null)
+            preNode.right = curNode;
+        preNode = curNode;
+        if (head == null)
+            head = curNode;
+        inOrder(curNode.right);
+    }
+
     public TreeNode Convert(TreeNode pRootOfTree) {
         if (pRootOfTree == null){
             return null;
@@ -56,7 +79,7 @@ public class Problem36 {
         root3.left = root6;
         root3.right = root7;
         Problem36 problem36 = new Problem36();
-        TreeNode minNode = problem36.Convert(root1);
+        TreeNode minNode = problem36.Convert1(root1);
         System.out.println("finish");
     }
 

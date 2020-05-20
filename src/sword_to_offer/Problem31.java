@@ -25,12 +25,31 @@ public class Problem31 {
         return stack.isEmpty();
     }
 
+    public boolean IsPopOrder1(int [] pushA,int [] popA) {
+        if (pushA == null || popA == null || pushA.length == 0
+                || popA.length == 0 || pushA.length != popA.length){  // 两个序列要等长
+            return false;
+        }
+        Stack<Integer> stack = new Stack<>();
+        int N = pushA.length;
+        // i表示压入序列的索引，j表示弹出序列的索引
+        for (int i = 0, j = 0; j < N; j++){
+            while (i < N && (stack.isEmpty() || stack.peek() != popA[j])){
+                stack.push(pushA[i++]);
+            }
+            if (stack.peek() == popA[j]){
+                stack.pop();
+            }
+        }
+        return stack.isEmpty();
+    }
+
     /**
      * 我自己最开始写的，从popA开始比较，代码比较复杂，而且有个问题：不知道怎么处理在栈顶元素为空时，
      * 怎么和弹出序列的元素进行比较，因为栈为空时，stack.peek()会抛出异常而不是返回一个int值，因此
      * 无法进行比较。
      */
-    public boolean IsPopOrder2(int [] pushA,int [] popA) {
+    public boolean IsPopOrder0(int [] pushA,int [] popA) {
         if (pushA == null || popA == null || pushA.length < popA.length){
             return false;
         }
@@ -66,12 +85,13 @@ public class Problem31 {
     }
 
     public static void main(String[] args){
-        int[] pushA = {1,2,3,4,5}, popA = {4,3,5,1,2};
+        int[] pushA = {1,2,3,4,5}, popA = {4,3,5,2,1};
         Problem31 problem31 = new Problem31();
         boolean result = problem31.IsPopOrder(pushA, popA);
         if (result){
             System.out.println("success");
+        }else{
+            System.out.println("fail");
         }
-        System.out.println("fail");
     }
 }

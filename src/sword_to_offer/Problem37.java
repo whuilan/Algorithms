@@ -5,6 +5,9 @@ import java.util.Queue;
 
 /**
  * P194序列化（和反序列化）二叉树,注意二叉树节点中的值不一定全是0-9的个位数，还可能有几十，几百等等
+ * 难点：反序列化时取出根节点后不知道怎样区分左右子树对应的子序列是哪一部分，因此不能像第7题和第33题
+ * 那样每次用当前树的起始和结束索引来进行递归。所以就来想想这个题为啥和那两个题不一样，有没有什么特点
+ * 可供利用，就是空节点对应的“#"啦！因为遍历序列中叶节点之后一定会有两个##。
  */
 public class Problem37 {
     private int index = 0;
@@ -65,8 +68,8 @@ public class Problem37 {
         root1.left = root2;
         root1.right = root3;
         root2.left = root4;
-        root3.left = root5;
-        root3.right = root6;
+//        root3.left = root5;
+//        root3.right = root6;
         Problem37 problem37 = new Problem37();
         String treeStr = problem37.Serialize(root1);
         TreeNode root = problem37.Deserialize(treeStr);

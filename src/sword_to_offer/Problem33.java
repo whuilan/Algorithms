@@ -12,7 +12,7 @@ public class Problem33 {
     }
 
     private boolean VerifySquenceOfBST(int[] seq, int start, int end){
-        if (start + 1 >= end){  // 传进来的只有两个值或一个值时，一定可以构成一棵二叉搜索树
+        if (end - start <= 1){  // 传进来的只有两个值或一个值时，一定可以构成一棵二叉搜索树
             return true;
         }
         int rootVal = seq[end];
@@ -30,7 +30,7 @@ public class Problem33 {
     }
 
     public static void main(String[] args){
-        int[] seq = {5,7,6,9,11,10,8};
+        int[] seq = {7,4,5,6};
         Problem33 problem33 = new Problem33();
         if (problem33.VerifySquenceOfBST(seq)){
             System.out.println("true");

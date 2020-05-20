@@ -32,4 +32,23 @@ public class Problem32_2 {
         }
         return twoDList;
     }
+
+    public static void main(String[] args){
+        TreeNode root1 = new TreeNode(8);
+        TreeNode root2 = new TreeNode(6);
+        TreeNode root3 = new TreeNode(10);
+        TreeNode root4 = new TreeNode(5);
+        TreeNode root5 = new TreeNode(7);
+        TreeNode root6 = new TreeNode(9);
+        TreeNode root7 = new TreeNode(11);
+        root1.left = root2;
+        root1.right = root3;
+        root2.left = root4;
+        root2.right = root5;
+        root3.left = root6;
+        root3.right = root7;
+        Problem32_2 problem32_2 = new Problem32_2();
+        ArrayList<ArrayList<Integer>> floors = problem32_2.Print(root1);
+        System.out.println();
+    }
 }

@@ -5,11 +5,13 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * P171(不分行)从上到下打印二叉树，核心思想：宽度优先搜索：借助先进先出的队列数据结构，而不使用递归
+ * P171(不分行)从上到下打印二叉树，核心思想：
+ * 宽度优先搜索：借助先进先出的队列数据结构，而不使用递归，
+ * 递归其实就是一个隐式的栈。
  */
 public class Problem32 {
     // 最开始想到的方法，节点在进入队列时就添加它的值
-    public ArrayList<Integer> PrintFromTopToBottom(TreeNode root) {
+    public ArrayList<Integer> PrintFromTopToBottom0(TreeNode root) {
         ArrayList<Integer> list = new ArrayList<>();
         if (root == null){
             return list;
@@ -32,7 +34,7 @@ public class Problem32 {
     }
 
     // 跟上面的其实是一样，只是节点在出队列时才添加其值
-    public ArrayList<Integer> PrintFromTopToBottom2(TreeNode root) {
+    public ArrayList<Integer> PrintFromTopToBottom(TreeNode root) {
         ArrayList<Integer> tree = new ArrayList<>();
         if (root == null){
             return tree;    // 注意空的ArrayList和null还不一样的
