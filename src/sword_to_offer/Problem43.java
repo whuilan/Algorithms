@@ -1,7 +1,7 @@
 package sword_to_offer;
 
 /**
- * P211从1到n的整数中1出现的次数
+ * P211从1到n的整数中1出现的次数（数学规律题）
  */
 public class Problem43 {
     public static int NumberOf1Between1AndN_Solution(int n){

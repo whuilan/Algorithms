@@ -6,6 +6,7 @@ package sword_to_offer;
 public class Problem46 {
     // 普通动态规划dynamic planning
     public static int numDecodings(String s) {
+        // leetcode上是从1开始映射到A...26映射到Z，所以单独的0是不行的，不能映射为任何字母
         if (s == null || s.length() == 0 || s.charAt(0) == '0'){
             return 0;
         }
@@ -34,8 +35,8 @@ public class Problem46 {
 
     /**
      * 当更新到 dp[i]的时候，我们只用到dp[i+1]和dp[i+2]，之后的数据就没有用了。
-     * 所以我们不需要 dp 开 len + 1 的空间。只申请三个空间就行，把数组dp[]的下标
-     * 对3求余就行了
+     * 所以我们不需要为dp开len + 1的空间。只申请三个空间就行，把数组dp[]的下标
+     * 对3取余就行了，也就是将上面的写法中每个用到下标/索引的地方都对3取余%3
      */
     public static int numDecodings2(String s){
         if (s == null || s.length() == 0){

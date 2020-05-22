@@ -34,7 +34,7 @@ public class Problem47 {
         }
         int r = board.length, c = board[0].length;
         // 没有必要保存第i-2行及以上的所有格子的价值最大值。用一维数组即可，该数组前面j（0~j-1）个数字
-        // 分别时当前第i行前面j个格子的价值最大值，从索引j开始则保存的是i-1行c-j个格子的价值最大值，
+        // 分别是当前第i行前面j个格子的价值最大值，从索引j开始则保存的是i-1行c-j个格子的价值最大值，
         // debug一下就知道啦~
         int[] optimizedDP = new int[c];
         for (int i = 0; i < r; i++){
@@ -54,7 +54,7 @@ public class Problem47 {
 
     public static void main(String[] args){
         int[][] gifts = {{1, 10, 3, 8}, {12, 2, 9, 6},{5, 7, 4, 11},{3, 7, 16, 4}};
-        int maxValue = getMost(gifts);
+        int maxValue = getMost1(gifts);
         System.out.println(maxValue);
     }
 }

@@ -21,9 +21,9 @@ public class Problem40 {
         return list;
     }
 
-    // 递归调用：在索引范围为(lo..hi)之中查找j==k
+    // 递归调用：在索引范围为(lo..hi)之中查找j==k，且此时j左边的元素都比它小，右边的元素都比它大
     public void GetLeastNumbers_Solution(int[] input, int k, int lo, int hi){
-        if (lo >= hi){
+        if (hi <= lo){
             return;
         }
         int j = Partition(input, lo, hi);
@@ -63,12 +63,13 @@ public class Problem40 {
         input[j] = t;
     }
 
-    // 法二：优先队列（最大堆），时间复杂度为O(nlogk)(<<O(nlogn))
+    // 法二：优先队列（最大堆），时间复杂度为O(nlogk)(<<O(nlogn))，特别适合处理海量数据
     public ArrayList<Integer> GetLeastNumbers_Solution2(int [] input, int k) {
         if (input == null || input.length == 0 || k <= 0 || k > input.length){
             return new ArrayList<>();
         }
-        // java内置的优先队列默认是最小堆，需要转换为最大堆
+        // java内置的优先队列默认是最小堆，需要转换为最大堆，还可以用lambda表达式进行转换
+        // 在构造函数中传入: (a,b) -> b - a
         PriorityQueue<Integer> maxPQ = new PriorityQueue<>(Comparator.reverseOrder());
         for (int n : input){
             maxPQ.offer(n);
@@ -83,7 +84,7 @@ public class Problem40 {
         int[] input = {4,5,1,6,2,7,3,8};
         int k = 4;
         Problem40 problem40 = new Problem40();
-        ArrayList<Integer> minK = problem40.GetLeastNumbers_Solution2(input, k);
+        ArrayList<Integer> minK = problem40.GetLeastNumbers_Solution(input, k);
         for(int n : minK){
             System.out.print(n + " ");
         }
