@@ -19,17 +19,17 @@ public class Problem6 {
     }
 
     // 法一：利用栈，后进先出的特点
-//    public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
-//        Stack<Integer> stack = new Stack<>();
-//        for(ListNode x = listNode;x != null;x = x.next){
-//            stack.push(x.val);
-//        }
-//        ArrayList<Integer> arrayList = new ArrayList<>();
-//        while (!stack.empty()){
-//            arrayList.add(stack.pop());
-//        }
-//        return arrayList;
-//    }
+    public ArrayList<Integer> printListFromTailToHead1(ListNode listNode) {
+        Stack<Integer> stack = new Stack<>();
+        for(ListNode x = listNode;x != null;x = x.next){
+            stack.push(x.val);
+        }
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        while (!stack.empty()){
+            arrayList.add(stack.pop());
+        }
+        return arrayList;
+    }
 
     // 法二：利用递归思想，每访问一个节点时，先递归输出它后面的节点，再输出该节点自身
     public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {

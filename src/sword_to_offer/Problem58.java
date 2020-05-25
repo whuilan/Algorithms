@@ -20,7 +20,7 @@ public class Problem58 {
         }
         List<String> list = Arrays.asList(str.split(" "));
         Collections.reverse(list);
-        return String.join(" ", list);
+        return String.join(" ", list); // list为空，里面没有元素时，返回空字符串""
     }
 
     // 法二：不需要借助额外的空间（除了开始将输入转换为字符数组），
@@ -59,9 +59,9 @@ public class Problem58 {
 
     public static void main(String[] args){
         // String str = " ";
-        String str = "a good   boy";
+        String str = " a good   boy";
         Problem58 problem58 = new Problem58();
-        String reverseStr = problem58.ReverseSentence0(str);
+        String reverseStr = problem58.ReverseSentence(str);
         System.out.println(reverseStr);
     }
 }

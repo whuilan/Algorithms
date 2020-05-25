@@ -1,7 +1,9 @@
 package sword_to_offer;
 
 /**
- * P253两个链表的第一个公共节点，时间复杂度为O(m+n)
+ * P253两个链表的第一个公共节点，时间复杂度为O(m+n)，空间复杂度为O(1)
+ * ps:暴力法的时间复杂度为O(mn)，空间复杂度为O(1)
+ *    借用栈的方法时间复杂度为O(m+n)，空间复杂度也为为O(m+n)，相当于空间换时间
  */
 public class Problem52 {
     public ListNode FindFirstCommonNode(ListNode pHead1, ListNode pHead2) {

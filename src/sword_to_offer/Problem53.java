@@ -71,9 +71,10 @@ public class Problem53 {
         return 0;
     }
 
-    // 返回一个数k在一个排序数组中应该插入的位置，若原数组中包含这个元素，则返回它在数组中的索引
+    // 返回一个数k在一个排序数组中应该插入的位置，若原数组中包含这个元素，
+    // 则返回它在数组中第一次出现时的索引
     private int getIndexOfK(int[] a, int k){
-        int lo = 0, hi = a.length;
+        int lo = 0, hi = a.length; // 注意k可能比数组中的元素都要大，此时应该插入到a.length索引处
         while (lo < hi){
             int mid = lo + (hi - lo) / 2;
             if (a[mid] >= k){

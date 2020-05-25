@@ -23,6 +23,7 @@ public class Problem53_2 {
                 }
             }
         }
+        // 边界不能忘掉！加入缺失的数字就是最后一个数字，那么在上面的循环内部就不会有返回！
         if (lo == nums.length){
             return nums.length;
         }
@@ -47,8 +48,8 @@ public class Problem53_2 {
     }
 
     public static void main(String[] args){
-       int[] a = {0,1,3,4,5};
-       int m = missingNumber2(a);
+       int[] a = {0,1,2};
+       int m = missingNumber(a);
        System.out.println(m);
     }
 }

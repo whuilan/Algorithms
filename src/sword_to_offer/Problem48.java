@@ -10,26 +10,29 @@ import java.util.Map;
  * 表示的字符串内，即上一次出现的索引小于窗口起始索引i，此时无影响，不应该更新
  */
 public class Problem48 {
+
     public static int lengthOfLongestSubstring(String s) {
-        if(s == null || s.length() == 0){
+        if (s == null || s.length() == 0){
             return 0;
         }
-        int maxLen = 0;
-        int i = 0;  // 表示窗口左边界的指针
+        // 用map来保存已经遍历过的字符及其索引位置
         HashMap<Character, Integer> map = new HashMap<>();
-        for (int j = 0; j < s.length(); j++){  // 表示窗口右边界的指针
+        // 设置一个变量来保存最大长度，初始化为0，随着遍历过程而改变
+        int maxLen = 0;
+        // i,j分表表示滑动窗口的左边界和右边界指针
+        for (int i = 0, j = 0; j < s.length(); j++){
             char c = s.charAt(j);
-            if (map.containsKey(c) && map.get(c) >= i) {
+            if (map.containsKey(c) && map.get(c) >= i){
                 i = map.get(c) + 1;
             }
             map.put(c, j);
-            maxLen = Math.max(j - i + 1, maxLen);
+            maxLen = Math.max(maxLen, j - i + 1);
         }
         return maxLen;
     }
 
     public static void main(String[] args){
-        String s = "arabcacfr";
+        String s = "pww";
         int maxLen = lengthOfLongestSubstring(s);
         System.out.println(maxLen);
     }

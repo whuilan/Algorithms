@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 /**
  * 题目二：和为s的连续正数序列
+ * 这个题的双指针类似滑动窗口，左右边界指针都在向前滑动。而判断排序数组中的两数之和，
+ * 以及和为零的三个数组用的双指针是往中间靠拢的。
+ *
  */
 public class Problem57_2 {
     public ArrayList<ArrayList<Integer>> FindContinuousSequence(int sum) {

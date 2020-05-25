@@ -1,15 +1,17 @@
 package LeetCode;
 
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
+
 import java.util.*;
 
 /**
  * 三数之和：给你一个包含n个整数的数组 nums，判断nums中是否存在三个元素 a，b，c ，
- * 使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组
+ * 使得 a+b+c=0 ？请你找出所有满足条件且不重复的三元组
  */
 public class Solution15 {
     // 法一：排序+HashMap哈希表，时间复杂度为O(n^2)，空间复杂度为O(n)
-    // 虽然通过了，但是代码细节很容易出错，尤其是去重
-    public static List<List<Integer>> threeSum0(int[] nums) {
+    // 排序的目的是为了去重，虽然通过了，但是代码细节很容易出错，尤其是去重
+    public static List<List<Integer>> threeSum1(int[] nums) {
         List<List<Integer>> lists = new ArrayList<>();
         if (nums != null && nums.length >= 3){
             int N = nums.length;
@@ -19,6 +21,7 @@ public class Solution15 {
                 map.put(nums[i], i);
             }
             for (int i = 0; i < N - 2; i++){
+                // 将三元组中每个元素的位置固定下来，每个三元组就只有一种情况
                 if (i > 0 && nums[i] == nums[i-1]){
                     continue;
                 }

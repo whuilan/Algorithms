@@ -2,15 +2,17 @@ package sword_to_offer;
 
 /**
  * P240丑数
+ * 重点：如何生成下一个丑数的逻辑
+ * 其实就是动态规划！这里的times数组就相当于dp[]
  */
 public class Problem49 {
     public static int GetUglyNumber_Solution(int index) {
         if (index <= 0){
             return 0;
         }
-        if (index <= 6){
-            return index;
-        }
+//        if (index <= 6){
+//            return index;
+//        }
         int[] nums = new int[index];
         nums[0] = 1;
         int t2 = 0, t3 = 0, t5 = 0; // 指针，在该处乘以2/3/5时对应的数大于此时数组中最大的数

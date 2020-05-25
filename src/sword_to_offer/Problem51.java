@@ -5,7 +5,7 @@ package sword_to_offer;
  */
 public class Problem51 {
 
-    private long N = 0;
+    private long N = 0; // 大坑！逆序对的数目可能非常多，大于int能表示的范围！
     private int[] aux;
 
     public int InversePairs(int [] array) {
@@ -39,12 +39,13 @@ public class Problem51 {
             else if (j > hi){
                 a[k] = aux[i++];
             }
-            else if (aux[i] <= aux[j]){
-                a[k] = aux[i++];
+            else if(aux[i] > aux[j]){
+                a[k] = aux[j++];
+                // 在左边的数组中，从i开始的每个元素都比aux[j]大，都构成了一对逆序对
+                N += mid - i + 1;
             }
             else {
-                a[k] = aux[j++];
-                N += mid - i + 1;
+                a[k] = aux[i++];
             }
         }
     }

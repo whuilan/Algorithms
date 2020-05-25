@@ -26,8 +26,49 @@ public class Solution151 {
         return String.join(" ", list); // 若list.size() = 0，则返回空字符串""
     }
 
-    // 法二：不用语言（java）内置api，自行编写对应的函数
-    public String reverseWords2(String s) {
+    // 不用java内置库，自行编写对应的函数，在翻转之前就去掉多余的空格
+    public String reverseWords2_1(String s) {
+        if (s == null){
+            return null;
+        }
+        s = s.trim();
+        char[] charArray = s.toCharArray();
+        StringBuilder sb = new StringBuilder();
+        // 去掉连续出现的多个空格（保留第一个）
+        for (int i = 0; i < charArray.length; i++){
+            char c = charArray[i];
+            if (i > 0 && c == ' ' && charArray[i - 1] ==  ' '){
+                continue;
+            }
+            sb.append(c);
+        }
+        int N = sb.length();
+        // 整体翻转
+        reverseStringBuilder(sb, 0, N - 1);
+        // 翻转每个单词
+        int start = 0, end = 0;
+        while (end <= N){
+            if ( end == N || sb.charAt(end) == ' '){
+                reverseStringBuilder(sb, start, end - 1);
+                start = end + 1;
+            }
+            end++;
+        }
+        return sb.toString();
+    }
+
+    private void reverseStringBuilder(StringBuilder sb, int lo, int hi){
+        while (lo < hi){
+            char c = sb.charAt(lo);
+            sb.setCharAt(lo, sb.charAt(hi));
+            sb.setCharAt(hi, c);
+            lo++;
+            hi--;
+        }
+    }
+
+    // 法二：翻转每个单词过程中再去掉空格
+    public String reverseWords2_2(String s) {
         if (s == null){
             return null;
         }
@@ -67,10 +108,10 @@ public class Solution151 {
     }
 
     public static void main(String[] args){
-        String s = "a good   boy";
+        String s = " a good   boy";
         // String str = "";
         Solution151  solution151 = new Solution151();
-        String reverseStr = solution151.reverseWords2(s);
+        String reverseStr = solution151.reverseWords2_2(s);
         System.out.println(reverseStr);
     }
 }

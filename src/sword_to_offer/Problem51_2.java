@@ -1,5 +1,8 @@
 package sword_to_offer;
 
+/**
+ * 只是51题归并的另一种写法
+ */
 public class Problem51_2 {
 
     private long cnt = 0;

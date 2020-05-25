@@ -8,7 +8,7 @@ public class Problem55 {
         if (root == null){
             return 0;
         }
-        // 相当于前序遍历
+        // 相当于前序遍历(根左右)
         return 1 + Math.max(TreeDepth(root.left), TreeDepth(root.right));
     }
 }
