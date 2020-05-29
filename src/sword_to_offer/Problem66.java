@@ -5,6 +5,28 @@ package sword_to_offer;
  * 时间复杂度为O(n)（直观的双层循环暴力解法时间复杂度为O(n^2)）
  */
 public class Problem66 {
+    public static int[] multiply0(int[] A) {
+        if (A == null || A.length < 2){
+            return new int[0];
+        }
+        int n = A.length;
+        int[] B = new int[n];
+        int[] C = new int[n];
+        int[] D = new int[n];
+        C[0] = 1;
+        D[n-1] = 1;
+        for (int i = 1; i < n; i++){
+            C[i] = C[i-1] * A[i-1];
+        }
+        for (int i = n - 2; i >= 0; i--){
+            D[i] = D[i+1] * A[i+1];
+        }
+        for (int i = 0; i < n; i++){
+            B[i] = C[i] * D[i];
+        }
+        return B;
+    }
+
     public static int[] multiply(int[] A) {
         if(A == null || A.length < 2){
             return new int[0];

@@ -11,13 +11,12 @@ public class Problem63 {
         if(prices == null || prices.length < 2){
             return 0;
         }
-        int N = prices.length;
         // 使用一个变量maxProfit来保存当卖出价为数组中第i个数字时可能获得的最大利润
         int maxProfit = 0;
         // 使用一个变量curMin来保存当前（前i-1个数字）的最小值，即股票的最低价
         int curMin = prices[0];
         // 从第二个索引开始遍历数组，得到在第i个数字卖出时能够得到的最大利润
-        for (int i = 1; i < N; i++){
+        for (int i = 1; i < prices.length; i++){
             maxProfit = Math.max(maxProfit, prices[i]-curMin);
             curMin = Math.min(curMin, prices[i]);
         }

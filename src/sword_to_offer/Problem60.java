@@ -7,7 +7,7 @@ package sword_to_offer;
 public class Problem60 {
     // 法一（我的思路）：类似于面试题17，是一个全排列的问题，s的范围为n(全1)~6n(全6)，对
     // n个骰子点数进行全排列，计算每种情况下点数之和s的值，并定义一个长为6n-n+1的数组来记录
-    // 每个s的出现次数。是对的，但是运行时间超时
+    // 每个s的出现次数。是对的，但是运行时间超时(因为基于递归)
     private int[] times;
 
     public double[] twoSum1(int n) {
