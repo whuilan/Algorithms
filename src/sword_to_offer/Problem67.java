@@ -1,7 +1,7 @@
 package sword_to_offer;
 
 /**
- * P318字符串转换为整数
+ * P318字符串转换为整数，如输入字符串“123”，输出数字123
  * 需要想到的各种可能输入：null/空字符串、负数、字符串中有其他字符（该字符串不能表示一个整数）
  * 还有溢出！整数的范围为：-2147483648~2147483647
  */
@@ -125,7 +125,7 @@ public class Problem67 {
         int result = 0;
         // 计算时遍历的指针
         int i = 0, len = str.length();
-        int limit = - Integer.MAX_VALUE; // -2147483637
+        int limit = - Integer.MAX_VALUE; // -2147483647
         // 先看一下第一个字符，可能为正负号，但不能只有正负号
         char firstChar = str.charAt(0);
         if (firstChar < '0' || firstChar > '9'){
@@ -163,7 +163,7 @@ public class Problem67 {
 
     public static void main(String[] args){
         String s = "-214";
-        // int i = Integer.parseInt(s);
+        int i = Integer.parseInt(s);
         Problem67 problem67 =  new Problem67();
         int n = problem67.StrToInt1_2(s);
         System.out.println(n);

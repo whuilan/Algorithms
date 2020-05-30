@@ -2,7 +2,9 @@ package sword_to_offer;
 
 /**
  * 普通二叉树中两个节点的最低公共祖先
- * 思路：从根节点开始，在左右子树中遍历，查找左右子数是否存在p,q，对于一个节点来说有三种情况：
+ * 所谓两个节点的最低公共祖先，指的是这两个节点都出现在某个节点的子树中（不管是出现在公共祖先
+ * 的一左一右，还是一个出现在公共祖先的左边，一个在右边）
+ * 思路：从根节点开始，在左右子树中遍历，查找左右子树是否存在p,q，对于一个节点来说有三种情况：
  * （1）左右子树中均不存在p和q，则该节点返回null
  * （2）左/右子树中的一个存在p或q，则返回找到的p/q
  * （3）左/右子树中刚好一个存在p，一个存在q，则返回该节点本身
@@ -10,7 +12,8 @@ package sword_to_offer;
  * （延伸：若每个节点有指向父节点的链接，那么问题就转换成了求两条链表的第一个公共节点）
  */
 public class Problem68_2 {
-    // 在左右子树中查找是否存在 p 或者 q，如果 p 和 q 分别在两个子树中，那么就说明根节点就是最低公共祖先。
+    // 在左右子树中查找是否存在 p 或者 q，如果 p 和 q 分别在两个子树中，
+    // 那么就说明根节点就是最低公共祖先。即后序遍历！避免遍历重复遍历！
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null || root == p || root == q)
             return root;
@@ -20,13 +23,13 @@ public class Problem68_2 {
     }
 
     public static void main(String[] args){
-        TreeNode node1 = new TreeNode(3);
-        TreeNode node2 = new TreeNode(5);
-        TreeNode node3 = new TreeNode(1);
-        TreeNode node4 = new TreeNode(6);
-        TreeNode node5 = new TreeNode(2);
-        TreeNode node6 = new TreeNode(0);
-        TreeNode node7 = new TreeNode(8);
+        TreeNode node1 = new TreeNode(1);
+        TreeNode node2 = new TreeNode(3);
+        TreeNode node3 = new TreeNode(5);
+        TreeNode node4 = new TreeNode(4);
+        TreeNode node5 = new TreeNode(6);
+        TreeNode node6 = new TreeNode(2);
+        TreeNode node7 = new TreeNode(7);
 //        TreeNode node8 = new TreeNode(7);
 //        TreeNode node9 = new TreeNode(4);
         node1.left = node2;
@@ -38,7 +41,7 @@ public class Problem68_2 {
 //        node5.left = node8;
 //        node5.right = node9;
         Problem68_2 problem68_2 = new Problem68_2();
-        TreeNode ancestor = problem68_2.lowestCommonAncestor(node1, node4, node5);
+        TreeNode ancestor = problem68_2.lowestCommonAncestor(node1, node2, node4);
         System.out.println(ancestor.val);
     }
 }
