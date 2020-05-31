@@ -1,6 +1,4 @@
-package LeetCode;
-
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
+package LeetCode.Array;
 
 import java.util.*;
 
@@ -43,7 +41,7 @@ public class Solution15 {
     // 法二：排序+双指针，时间复杂度为O(n^2)，空间复杂度为O(1)
     public static List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> lists = new ArrayList<>();
-        if (nums != null && nums.length >= 3){
+        if (nums != null && nums.length > 2){
             Arrays.sort(nums);
             int N = nums.length;
             for (int i = 0; i < N - 2; i++){
@@ -56,22 +54,22 @@ public class Solution15 {
                 int lo = i + 1, hi = N - 1;
                 while (lo < hi){
                     int sum = nums[i] + nums[lo] + nums[hi];
-                    if (sum == 0){
+                    if(sum < 0){
+                        lo++;
+                    }
+                    else if(sum > 0){
+                        hi--;
+                    }
+                    else{
                         List<Integer> list = Arrays.asList(nums[i], nums[lo], nums[hi]);
                         lists.add(list);
-                        while (lo < hi && nums[lo+1] == nums[lo]){
+                        while(lo < hi && nums[lo+1] == nums[lo]){
                             lo++;
                         }
-                        while (lo < hi && nums[hi-1] == nums[hi]){
+                        while(lo < hi && nums[hi-1] == nums[hi]){
                             hi--;
                         }
                         lo++;
-                        hi--;
-                    }
-                    else if (sum < 0){
-                        lo++;
-                    }
-                    else if (sum > 0){
                         hi--;
                     }
                 }
