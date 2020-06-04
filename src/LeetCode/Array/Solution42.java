@@ -1,5 +1,8 @@
 package LeetCode.Array;
 
+/**
+ * 接雨水
+ */
 public class Solution42 {
     // 解法一：暴力直接解法，求每一列能装的水，因此对数组进行遍历，同时记录下当前列的高度，
     // 当前列左边的最大值和右边的最大值。时间复杂度O(n^2)，空间复杂度O(1)。
@@ -32,8 +35,8 @@ public class Solution42 {
         return max;
     }
 
-    // 解法二：（动态规划，将中间结果保存起来，避免重复计算）法一中每次遍历都要用O(n)的时间
-    // 复杂度去找当前列左边的最大值和右边的最大值其实可以先将其用数组存起来，再遍历的时候只需
+    // 解法二：（动态编程/规划，将中间结果保存起来，避免重复计算）法一中每次遍历都要用O(n)的时间
+    // 复杂度去找当前列左边的最大值和右边的最大值其实可以提前将其用数组存起来，再遍历的时候只需
     // 要去对应位置读取就好了。时间复杂度为O(n)，空间复杂度也为O(n)。相当于空间换时间。
     public int trap2(int[] height) {
         if (height == null || height.length < 3){
@@ -44,9 +47,11 @@ public class Solution42 {
         // leftMax[i]表示第i列左边的最大值，即0~i-1列的最大值，注意不包含自身
         int[] leftMax = new int[N];
         int[] rightMax = new int[N];
+        // 从左到右遍历求每一列的leftMax
         for (int i = 1; i < N - 1; i++){
             leftMax[i] = Math.max(leftMax[i - 1], height[i - 1]);
         }
+        // 从右往左遍历求每一列的rightMax
         for (int i = N - 2; i > 0; i--){
             rightMax[i] = Math.max(rightMax[i+1], height[i+1]);
         }
