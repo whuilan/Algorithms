@@ -1,10 +1,8 @@
 package LeetCode.String;
 
-import java.util.HashMap;
-
 /**
  * 最长回文子串（回文字符串：即是一个正读和反读都一样的字符串，如level, noon
- * 输入"babd"，则最长回文子串为“bab"）
+ * 输入"babd"，则最长回文子串为“bab"）medium
  */
 public class Solution5 {
     // 法一：暴力法，这种求字符串中满足某个条件的某个子串，明显可以用暴力法，枚举出所有子串，
@@ -15,7 +13,7 @@ public class Solution5 {
             return s;
         }
         char[] c = s.toCharArray();
-        int begin = 0; // 初始化最长回文自创的起始索引
+        int begin = 0; // **初始化最长回文子串的起始索引
         int longestLen = 1; // 初始化最长回文子串的长度为1（至少为1）
         // 枚举所有长度大于1的子串 charArray[i..j]，i,j分别为子串的起始和结束索引
         for (int i = 0; i < c.length - 1; i++){
@@ -84,7 +82,7 @@ public class Solution5 {
     }
 
     // 2_1写得有点复杂了，比较容易出错，其实对于子串s[i+1...j-1]，因为要构成子串
-    // 如果j-1-(i+1)+1 < 2，那么就不需要去判断子串了，得到j-i<3，即j-i+1<4，那么
+    // 如果j-1-(i+1)+1 < 2，那么就不需要去判断子串了，得到j-i<3，即j-i+1<4，也就是
     // 当串的长度为1、2、3时其实就不需要判断子串了。为1即i=j，一定是回文子串，为2、3
     // 即i,j相邻或中间间隔一个数字，那么就只需要判断首尾字符是否相等。
     public String longestPalindrome2_2(String s) {
@@ -117,7 +115,7 @@ public class Solution5 {
     }
 
     // 法三：中心扩散法，其实就是我最开始想到的方法，找到回文子串的中心，再从中心往两边判断字符是否
-    // 相等，知道不相等，就确定了一个回文子串。这种方法需要用O(n)的时间遍历字符串（因为每个字符都有
+    // 相等，直到不相等，就确定了一个回文子串。这种方法需要用O(n)的时间遍历字符串（因为每个字符都有
     // 可能是回文串的中心），对于遍历到的每个字符，又需要用O(n)的时间向两边扩散判断，因此时间复杂度
     // 为O(n^2)，但空间复杂度为O(1)，是三种方法里最优的啦！但是我没有处理好子串长度为奇数和偶数时的
     // 差异，执行时经常有用例不能通过，需要反复修改。
@@ -141,12 +139,11 @@ public class Solution5 {
     // 以(left+right)/2处的字符为中心向两边扩散，返回最长回文子串
     private String extend(String s, int left, int right){
         while (left >=0 && right < s.length()){
-            if (s.charAt(left) == s.charAt(right)){
-                left--;
-                right++;
-            }else {
+            if (s.charAt(left) != s.charAt(right)) {
                 break;
             }
+            left--;
+            right++;
         }
         // 终止循环时left和right两端的字符要么不相等要么超出索引，因此不应该包含在返回回文子串的范围中
         return s.substring(left+1, right);

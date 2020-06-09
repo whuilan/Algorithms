@@ -1,6 +1,6 @@
 package LeetCode.Linked_List;
 
-// 反转链表
+// 反转链表(simple)
 public class Solution206 {
     // 法一：迭代
     public static ListNode reverseList1(ListNode head) {
@@ -31,7 +31,7 @@ public class Solution206 {
     }
 
     private void reverse(ListNode head){
-        if (head.next == null){
+        if (head.next == null){ // 到达最后一个节点
             reversedHead = head;
             return;
         }

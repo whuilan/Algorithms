@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * 给定一个二叉树，返回它的中序 遍历。
+ * 给定一个二叉树，返回它的中序遍历。
  */
 public class Solution94 {
     // 法一：经典的遍历树的方法，递归，时间复杂度为O(n)，空间最坏情况下需要空间O(n)，

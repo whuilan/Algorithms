@@ -5,10 +5,11 @@ package LeetCode.Tree;
  * 中的最大值。这条路径可能穿过也可能不穿过根结点。
  * 思路：第一直觉没错！就是某个节点左边最长的路径和右边最长的路径连起来，为了避免重复遍历，应该用后序
  * 遍历的方式依次遍历每个节点，一遍记录子树的长度，一边判断以该节点为根的树，是不是就是要返回的路径穿过
- * 的节点。和剑指中判断二叉树是否是平衡二叉树极其相似！
+ * 的节点。和剑指中判断二叉树是否是平衡二叉树55_2极其相似！
  */
 public class Solution543 {
     int maxLen = 0;
+
     public int diameterOfBinaryTree(TreeNode root) {
         depth(root);
         return maxLen;

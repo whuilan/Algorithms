@@ -36,7 +36,7 @@ public class Solution2 {
         return node;
     }
 
-    // 我想复杂啦，就按照普通加法，再考虑进位进位就行啦！有三点需要注意：
+    // 我想复杂啦，就按照普通加法，再考虑进位就行啦！有三点需要注意：
     // 1 返回结果为头结点时，通常需要先初始化一个预先指针 pre，该指针的下一个节点指向真正的头结点head。
     // 2 链表遍历尽量使用循环迭代来实现而不要用递归
     // 3 注意一些特殊情况，如[9,9]和1
@@ -51,7 +51,7 @@ public class Solution2 {
         ListNode p1 = l1, p2 = l2;
         // 初始化一个哑节点0，它指向我们要返回的头节点
         ListNode dummyHead = new ListNode(0);
-        // 将当前节点初始化为这个哑节点
+        // 将前一个节点初始化为这个哑节点
         ListNode pre = dummyHead;
         // 将进位初始化为0
         int carry = 0;

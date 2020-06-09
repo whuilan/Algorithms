@@ -1,10 +1,11 @@
 package LeetCode.Array;
 
 /**
- * 接雨水
+ * 接雨水(hard):给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，
+ * 下雨之后能接多少雨水。)
  */
 public class Solution42 {
-    // 解法一：暴力直接解法，求每一列能装的水，因此对数组进行遍历，同时记录下当前列的高度，
+    // 解法一：暴力解法，求每一列能装的水，因此对数组进行遍历，同时记录下当前列的高度，
     // 当前列左边的最大值和右边的最大值。时间复杂度O(n^2)，空间复杂度O(1)。
     public int trap1(int[] height) {
         if(height == null || height.length < 3){
@@ -35,7 +36,7 @@ public class Solution42 {
         return max;
     }
 
-    // 解法二：（动态编程/规划，将中间结果保存起来，避免重复计算）法一中每次遍历都要用O(n)的时间
+    // 解法二：（动态编程，将中间结果保存起来，避免重复计算）法一中每次遍历都要用O(n)的时间
     // 复杂度去找当前列左边的最大值和右边的最大值其实可以提前将其用数组存起来，再遍历的时候只需
     // 要去对应位置读取就好了。时间复杂度为O(n)，空间复杂度也为O(n)。相当于空间换时间。
     public int trap2(int[] height) {
@@ -66,7 +67,8 @@ public class Solution42 {
 
     // 解法三：双指针优化解法二的空间复杂度（我在解法一之后就想到了，但不知道rightMax该
     // 怎么用一个变量来保存）核心：用left和right两个指针分别从最左边和最右边同时开始遍历！
-    // 时间复杂度为O(n)，空间复杂度为O(1)
+    // 时间复杂度为O(n)，空间复杂度为O(1)（所以说，一个指针从左开始遍历不够嘛，不能处理
+    // rightMax，那就试试两个指针呀，要处理rightMax，就让新指针从右往左遍历）
     public int trap3(int[] height) {
         if (height == null || height.length < 3){
             return 0;
@@ -75,7 +77,7 @@ public class Solution42 {
         int leftMax = height[0], rightMax = height[N - 1]; // 左边和右边的最大值，不包括当前元素
         int left = 1, right = N - 2; // 遍历每一列的左右指针
         int amount = 0;
-        while (left <= right){
+        while (left <= right){ // 这一列也是要算上的！
             if (leftMax < rightMax){  // 此时可以确定left处的装水量
                 amount += Math.max(0, leftMax - height[left]);
                 leftMax = Math.max(leftMax, height[left]);

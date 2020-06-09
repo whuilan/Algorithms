@@ -4,7 +4,7 @@ package LeetCode.String;
 import java.util.Stack;
 
 /**
- * 有效的括号
+ * 有效的括号(simple)
  * 核心：遍历，将左括号压入栈，遇到右括号再比较！
  */
 public class Solution20 {
