@@ -1,0 +1,52 @@
+package LeetCode.SearchAndSort;
+
+import java.util.Arrays;
+
+/**
+ * 给定一个无序的整数数组，找到其中最长上升子序列的长度。
+ * 思路：动态规划，看到“最长”这种求最优解的，就想到可能可以用动态规划。我想到了，但是我的问题
+ * 出在状态转移（方程上），受限于以往做的小部分题目，老以为当前状态只和上一个状态有关系，发现
+ * 这样会有问题，就不知道怎么办了。实际上这个题就是和之前所有的状态都有关系！而不仅仅是上一个！
+ * 多在草稿纸上举几个例子就能分析出来，反正dp[]一般都把前面所有状态都记下来了。
+ * 反思：遇到瓶颈时可以转换思路，比如计算时从尾到头有问题就试试从头到尾，还有问题就换一个状态
+ * 定义等等...
+ */
+public class Solution300 {
+    /*
+    状态定义：假设dp[i]为以nums[i]为结尾的递增子序列的长度
+    状态转移：分析，如果num[i]大于在i之前的某个数字nums[j](j<i),那么num[i]就可以接在以nums[j]
+    为结尾的递增子序列后面构成一个长度+1的新的递增子序列，即dp[i]=1+max(dp[j])(j<i&&num[j]<nums[i])
+    因此遍历到nums[i]时，需要把下标i之前的所有的数都看一遍，找到比num[i]小，同时dp又最大的那个！
+     */
+    public int lengthOfLIS(int[] nums) {
+        if (nums == null || nums.length == 0){
+            return 0;
+        }
+        int N = nums.length;
+        int[] dp = new int[N];
+        // 初始化，每个数字都可以单独构成一个只有它自己的长度为1的递增子序列
+        Arrays.fill(dp, 1);
+        for (int i = 1; i < N; i++){
+            for (int j = 0; j < i; j++){
+               if (nums[j] < nums[i]){
+                   dp[i] = Math.max(dp[i], dp[j]+1); // 写法很巧妙！避免了又去找所有比num[i]小的数里面dp的最大值
+               }
+            }
+        }
+        int maxLen = 1;
+        for (int i = 1; i < N; i++){
+            if (dp[i] > maxLen){
+                maxLen = dp[i];
+            }
+        }
+        return maxLen;
+    }
+
+
+    public static void main(String[] args){
+        int[] nums = {10,9,2,5,3,7,101,18};
+        Solution300 solution300 = new Solution300();
+        int maxRisingLen = solution300.lengthOfLIS(nums);
+        System.out.println(maxRisingLen);
+    }
+}

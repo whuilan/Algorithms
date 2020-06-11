@@ -234,19 +234,19 @@ public class Interval1D {
             StdOut.println(intervals[i]);
         StdOut.println();
         
-        StdOut.println("Sort by min endpoint");
+        StdOut.println("SearchAndSort by min endpoint");
         Arrays.sort(intervals, Interval1D.MIN_ENDPOINT_ORDER);
         for (int i = 0; i < intervals.length; i++)
             StdOut.println(intervals[i]);
         StdOut.println();
 
-        StdOut.println("Sort by max endpoint");
+        StdOut.println("SearchAndSort by max endpoint");
         Arrays.sort(intervals, Interval1D.MAX_ENDPOINT_ORDER);
         for (int i = 0; i < intervals.length; i++)
             StdOut.println(intervals[i]);
         StdOut.println();
 
-        StdOut.println("Sort by length");
+        StdOut.println("SearchAndSort by length");
         Arrays.sort(intervals, Interval1D.LENGTH_ORDER);
         for (int i = 0; i < intervals.length; i++)
             StdOut.println(intervals[i]);

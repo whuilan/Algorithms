@@ -9,7 +9,7 @@
  *  chooses the partitioning element using Tukey's ninther,
  *  and cuts off to insertion sort.
  *
- *  Reference: Engineering a Sort Function by Jon L. Bentley
+ *  Reference: Engineering a SearchAndSort Function by Jon L. Bentley
  *  and M. Douglas McIlroy. Softwae-Practice and Experience,
  *  Vol. 23 (11), 1249-1265 (November 1993).
  *

@@ -6,7 +6,7 @@
  *  Data files:   https://algs4.cs.princeton.edu/51radix/words3.txt
  *                https://algs4.cs.princeton.edu/51radix/shells.txt
  *
- *  Sort an array of strings or integers in-place using American flag sort.
+ *  SearchAndSort an array of strings or integers in-place using American flag sort.
  *
  *  % java AmericanFlag < shells.txt 
  *  are
@@ -37,7 +37,7 @@ package edu.princeton.cs.algs4;
  *  see <a href="https://algs4.cs.princeton.edu/51radix">Section 5.1</a> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne
  *  and <a href = "http://static.usenix.org/publications/compsystems/1993/win_mcilroy.pdf">
- *  Engineering Radix Sort</a> by McIlroy and Bostic.
+ *  Engineering Radix SearchAndSort</a> by McIlroy and Bostic.
  *  For a version that uses only one auxilary array, see {@link AmericanFlagX}.
  *
  *  @author Robert Sedgewick

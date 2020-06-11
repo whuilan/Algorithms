@@ -5,7 +5,7 @@
  *  Data files:   https://algs4.cs.princeton.edu/51radix/words3.txt
  *                https://algs4.cs.princeton.edu/51radix/shells.txt
  *
- *  Sort an array of strings or integers using in-place MSD radix sort.
+ *  SearchAndSort an array of strings or integers using in-place MSD radix sort.
  *
  *  % java InplaceMSD < shells.txt 
  *  are

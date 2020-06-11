@@ -1,6 +1,5 @@
-package LeetCode.Sort;
+package LeetCode.SearchAndSort;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
