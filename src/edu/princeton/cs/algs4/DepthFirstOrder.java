@@ -91,7 +91,7 @@ public class DepthFirstOrder {
             if (!marked[v]) dfs(G, v);
     }
 
-    // run DFS in digraph G from vertex v and compute preorder/postorder
+    // run BacktrackingAndDFS in digraph G from vertex v and compute preorder/postorder
     private void dfs(Digraph G, int v) {
         marked[v] = true;
         pre[v] = preCounter++;
@@ -105,7 +105,7 @@ public class DepthFirstOrder {
         post[v] = postCounter++;
     }
 
-    // run DFS in edge-weighted digraph G from vertex v and compute preorder/postorder
+    // run BacktrackingAndDFS in edge-weighted digraph G from vertex v and compute preorder/postorder
     private void dfs(EdgeWeightedDigraph G, int v) {
         marked[v] = true;
         pre[v] = preCounter++;

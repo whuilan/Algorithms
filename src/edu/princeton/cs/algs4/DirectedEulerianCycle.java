@@ -51,7 +51,7 @@ public class DirectedEulerianCycle {
         if (G.E() == 0) return;
 
         // necessary condition: indegree(v) = outdegree(v) for each vertex v
-        // (without this check, DFS might return a path instead of a cycle)
+        // (without this check, BacktrackingAndDFS might return a path instead of a cycle)
         for (int v = 0; v < G.V(); v++)
             if (G.outdegree(v) != G.indegree(v))
                 return;

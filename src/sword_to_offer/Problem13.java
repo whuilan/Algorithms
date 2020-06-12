@@ -3,7 +3,7 @@ package sword_to_offer;
 /**
  * P92 回溯法：机器人的运动范围
  * 难点：r、c不知道各是几位数，又怎样去提取它的个位、十位、百位来计算各位数之和
- * 使用深度优先搜索（Depth First Search，DFS）方法进行求解。
+ * 使用深度优先搜索（Depth First Search，BacktrackingAndDFS）方法进行求解。
  */
 public class Problem13 {
     private static final int[][] next = {{0, -1}, {0, 1}, {-1,0}, {1, 0}};

@@ -97,7 +97,7 @@ public class HopcroftKarp {
             for (int s = 0; s < V; s++) {
                 if (isMatched(s) || !bipartition.color(s)) continue;   // or use distTo[s] == 0
 
-                // find augmenting path from s using nonrecursive DFS
+                // find augmenting path from s using nonrecursive BacktrackingAndDFS
                 Stack<Integer> path = new Stack<Integer>();
                 path.push(s);
                 while (!path.isEmpty()) {

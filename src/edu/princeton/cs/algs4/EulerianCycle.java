@@ -109,7 +109,7 @@ public class EulerianCycle {
         Stack<Integer> stack = new Stack<Integer>();
         stack.push(s);
 
-        // greedily search through edges in iterative DFS style
+        // greedily search through edges in iterative BacktrackingAndDFS style
         cycle = new Stack<Integer>();
         while (!stack.isEmpty()) {
             int v = stack.pop();

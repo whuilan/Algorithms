@@ -108,7 +108,7 @@ public class KosarajuSharirSCC {
         // compute reverse postorder of reverse graph
         DepthFirstOrder dfs = new DepthFirstOrder(G.reverse());
 
-        // run DFS on G, using reverse postorder to guide calculation
+        // run BacktrackingAndDFS on G, using reverse postorder to guide calculation
         marked = new boolean[G.V()];
         id = new int[G.V()];
         for (int v : dfs.reversePost()) {
@@ -122,7 +122,7 @@ public class KosarajuSharirSCC {
         assert check(G);
     }
 
-    // DFS on graph G
+    // BacktrackingAndDFS on graph G
     private void dfs(Digraph G, int v) { 
         marked[v] = true;
         id[v] = count;
