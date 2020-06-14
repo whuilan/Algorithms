@@ -18,7 +18,7 @@ public class Solution33 {
         int lo = 0, hi = nums.length - 1;
         while (lo < hi){
             int mid = lo + (hi - lo) / 2;
-            // 假如在找最小数字的二分查找过程中找到了target就直接返回
+            // 假如在找最小数字的二分查找过程中找到了target就直接返回，这一步不要掉
             if (nums[mid] == target){
                 return mid;
             }

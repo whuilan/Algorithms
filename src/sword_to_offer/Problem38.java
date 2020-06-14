@@ -9,7 +9,7 @@ import java.util.Collections;
 public class Problem38 {
     public ArrayList<String> Permutation(String str) {
         ArrayList<String> list = new ArrayList<>();
-        if (str != null || str.length() > 0){
+        if (str != null && str.length() > 0){
             char[] chars = str.toCharArray();
             Permutation(chars, 0, list);
             Collections.sort(list);  // 题目要求按字典序打印

@@ -12,18 +12,19 @@ import java.util.Arrays;
  */
 public class Solution56 {
     public int[][] merge(int[][] intervals) {
-        if (intervals == null || intervals.length == 0){
+        if (intervals == null || intervals.length == 0 || intervals[0].length == 0){
             return new int[0][0];
         }
         // 根据每个区间的左端点/最小值将区间排序，我就是卡在这里！
         Arrays.sort(intervals, (v1, v2) -> v1[0] - v2[0]);
+        // 初始化结果数组，用来放在合并区间的过程中每一步的结果
         int[][] ret = new int[intervals.length][2];
-        int idx = -1; // idx表示ret的当前索引
+        int idx = -1; // idx表示ret的当前索引，这是设置为-1很巧妙，用来处理第一个区间（此时没有上一个区间和它比较）
         for (int[] interval : intervals){
             // 如果idx为-1或当前区间interval的左端点大于合并结果ret中最后一个区间的右端点
             // 则说明没有交集，直接给ret中添加一个新的区间
             if (idx == -1 || interval[0] > ret[idx][1]){
-                ret[++idx] = interval;
+                ret[++idx] = interval; // 这里只能用前++，因为下面要更新当前区间idx的右端点
             }
             // 否在存在交集，更新当前ret的最后一个区间
             else {
