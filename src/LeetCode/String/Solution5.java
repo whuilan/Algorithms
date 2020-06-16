@@ -1,8 +1,8 @@
 package LeetCode.String;
 
 /**
- * 最长回文子串（回文字符串：即是一个正读和反读都一样的字符串，如level, noon
- * 输入"babd"，则最长回文子串为“bab"）medium
+ * 最长回文子串：给定一个字符串 s，找到 s 中最长的回文子串。（回文字符串：即是一个正读和反读
+ * 都一样的字符串，如level, noon，输入"babd"，则最长回文子串为“bab"）medium
  */
 public class Solution5 {
     // 法一：暴力法，这种求字符串中满足某个条件的某个子串，明显可以用暴力法，枚举出所有子串，
