@@ -30,7 +30,7 @@ public class Solution300 {
         Arrays.fill(dp, 1);
         for (int i = 1; i < N; i++){
             for (int j = 0; j < i; j++){
-               if (nums[j] < nums[i]){
+               if (nums[i] > nums[j]){
                    dp[i] = Math.max(dp[i], dp[j]+1); // 写法很巧妙！避免了又去找所有比num[i]小的数里面dp的最大值
                }
             }

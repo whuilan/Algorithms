@@ -33,7 +33,7 @@ public class Problem49 {
     }
 
     public static void main(String[] args){
-        int index = 10;
+        int index = 1500;
         int uglyNum = GetUglyNumber_Solution(index);
         System.out.println(uglyNum);
     }
