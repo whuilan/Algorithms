@@ -9,15 +9,15 @@ public class Problem42 {
         if (array == null || array.length == 0){
             throw new Exception("Empty array!");
         }
-        int sequentialSum = 0, maxSum = Integer.MIN_VALUE; // 注意maxSum不能初始化为0，要考虑到全负的数组
+        int curSum = 0, maxSum = Integer.MIN_VALUE; // 注意maxSum不能初始化为0，要考虑到全负的数组
         for (int i = 0; i < array.length; i++){
-            if (sequentialSum <= 0){
-                sequentialSum = array[i];
+            if (curSum <= 0){
+                curSum = array[i];
             }else {
-                sequentialSum += array[i];
+                curSum += array[i];
             }
-            if (sequentialSum > maxSum){
-                maxSum = sequentialSum;
+            if (curSum > maxSum){
+                maxSum = curSum;
             }
         }
         return maxSum;

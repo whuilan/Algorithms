@@ -35,7 +35,7 @@ public class Solution17 {
         for (int i = 0; i < chars.length(); i++){
             sb.append(chars.charAt(i));
             permute(digits, digit + 1, sb);
-            sb.deleteCharAt(sb.length() - 1);
+            sb.deleteCharAt(sb.length() - 1); // 重要！不要漏！
         }
     }
 
