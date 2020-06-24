@@ -3,7 +3,7 @@ package sword_to_offer;
 import java.util.ArrayList;
 
 /**
- * P269二叉搜索树的第K个节点，其实就是二叉搜索/查找树的中序（根左右）遍历序列
+ * P269二叉搜索树的第K个节点，其实就是二叉搜索/查找树的中序（左根右）遍历序列
  * 的第K个节点，即二叉搜索树的中序遍历序列是一个排序的递增序列
  */
 public class Problem54 {
