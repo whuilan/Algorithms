@@ -34,10 +34,12 @@ public class Problem13_2 {
         int max = 0;
         for (int i = 0;i < r;i++){
             for (int j = 0;j < c;j++){
-                int[] area = new int[1];
-                dfs(matrix, i, j, marked,area);
-                if (area[0] > max){
-                    max = area[0];
+                if (matrix[i][j] == 1 && !marked[i][j]){
+                    int[] area = new int[1];
+                    dfs(matrix, i, j, marked,area);
+                    if (area[0] > max){
+                        max = area[0];
+                    }
                 }
             }
         }

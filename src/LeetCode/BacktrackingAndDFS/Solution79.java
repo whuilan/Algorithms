@@ -32,7 +32,7 @@ public class Solution79 {
         // 网格r，c超出界限，或者该网格已经被访问过，或者该网格处的值和word的第idx个字符不相等
         // 说明当前网格不符合条件
         if (r < 0 || r >= rows || c < 0 || c >= cols
-                || marked[r][c] || board[r][c] != word.charAt(idx)){
+                || board[r][c] != word.charAt(idx) || marked[r][c] ){
             return false;
         }
         marked[r][c] = true;

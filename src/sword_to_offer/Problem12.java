@@ -7,7 +7,7 @@ package sword_to_offer;
  * 虽然还是有可能设置一些全局状态。
  */
 public class Problem12 {
-    private final static int[][] next = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
+    private static final int[][] next = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
     private int rows;
     private int cols;
 
