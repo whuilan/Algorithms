@@ -3,7 +3,7 @@ package sword_to_offer;
 import java.util.Stack;
 
 /**
- * P68面试题9：用两个栈实现队列
+ * P68面试题9的拓展：用两个栈实现队列
  */
 public class Problem9 {
     Stack<Integer> stack1 = new Stack<Integer>();
@@ -27,7 +27,7 @@ public class Problem9 {
         return stack2.pop();
     }
 
-    //另一个版本，队列为空时返回-1
+    //另一个版本，队列为空时返回-1，更好理解一点
     public int deleteHead() {
         if (!stack2.isEmpty()){    // stack2不为空时直接弹出stack2的栈顶元素
             return stack2.pop();
