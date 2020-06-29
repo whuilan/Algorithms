@@ -2,10 +2,7 @@ package sword_to_offer.sort;
 
 import edu.princeton.cs.algs4.StdRandom;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * 快速排序，快排平均所需要的时间也与NlogN成正比(~2NlogN次比较)，空间复杂为:O(logn)，
@@ -17,6 +14,8 @@ import java.util.List;
  * 3 熵最优的排序，适用于含有大量重复元素的数组排序，又称为荷兰国旗问题
  */
 public class Quick {
+    private static Random random = new Random();
+
     public static void sort(Comparable[] a){
         Collections.shuffle(Arrays.asList(a));  // 打乱a中元素的顺序，消除对输入的依赖
         sort(a, 0, a.length - 1);
@@ -42,6 +41,9 @@ public class Quick {
 
     private static int partition(Comparable[] a, int lo, int hi){
         int i = lo, j = hi + 1;    // 左右扫描指针
+        // 还可以在这里打乱顺序，随机选择一个元素作为v，方法为：
+        int randomIdx = random.nextInt(hi-lo+1) + lo;
+        exch(a, lo, randomIdx);
         Comparable v = a[lo];      // 切分元素
         while (true){
             // 扫描左右，检查扫描是否结束并交换元素

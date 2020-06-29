@@ -9,7 +9,7 @@ public class Problem39 {
         遍历数组时保存两个值，一个是数组中的一个数字target，一个是该数字出现的次数
         如果存在出现次数超过一半的数字，那么最后记录的数字target就是它。
         * 注意就算数组中没有数字出现的次数超过一半，target也总会是某个数字，因此遍历完
-        后还要去统计一下target到底有没有超过一半。
+        后还要去统计一下target到底有没有超过一半。多举几个例子分析就知道了，如1,2,3最后target=3,cnt=1
         cnt在这里的作用是变更target（变不变/变成谁）
      */
     public static int MoreThanHalfNum_Solution1(int [] array) {
@@ -65,7 +65,7 @@ public class Problem39 {
                 hi = index - 1;
             }
             else {
-                target = array[lo];
+                target = array[lo]; // 这里有错，参见leetcode215
                 break;
             }
         }
