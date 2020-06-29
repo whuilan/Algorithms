@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
  * 核心思想；从每个会议的角度看，我们将每个会议按照开始时间排序，从第一个会议开始遍历，
  * 到了会议开始时间时，会去检查现有的会议室有没有已经开完会的，如果有就会在这个房间开会。
  * 如果没有空闲房间又到时间了，那只能新开一间会议室。晚开始可能晚结束,也可能比早开始的更早结束，
- * 所以需要一个高效的方法来判断当前是否有会议室空闲（记录最早开会完的房间）。
+ * 所以需要一个高效的方法来判断当前已经开了的会议室有没有空闲（记录最早开会完的房间）。
  * 基于这些分析，最小堆（优先队列）是很合适的！可以将所有房间（有冲突的会议）存在最小堆中，堆中
  * 的键值是正在开会的那些会议的结束时间，那么堆顶就是最早结束的时间，即它最先开完会腾出房间，我们
  * 遍历到一个会议的时候，只需要检查堆顶会议是否开完，如果开完了可以用它的房间（把它替换掉）。如果
@@ -21,22 +21,19 @@ import java.util.PriorityQueue;
  */
 public class Solution253 {
     public static int minMeetingRooms(int[][] intervals) {
-        if (intervals.length == 0) {
+        if(intervals == null || intervals.length == 0 || intervals[0].length == 0){
             return 0;
         }
-        // 先按会议开始时间排序
-        Arrays.sort(intervals, (v1, v2) -> v1[0] - v2[0]);
-        // 创建最小堆，并按照每个会议的结束时间排序
-        PriorityQueue<int[]> pq = new PriorityQueue<>((v1,v2) -> v1[1] - v2[1]);
-        // 将第一个会议的时间压入最小堆
-        pq.offer(intervals[0]);
-        for (int i = 1; i < intervals.length; i++){
-            int[] earliest = pq.peek();
-            // 当前会议时间开始前，堆顶会议已经结束了，即有空闲房间
-            if (intervals[i][0] >= earliest[1]){
+        // 先按会议开始时间排序，之后遍历的时候按开始时间安排会议室
+        Arrays.sort(intervals, (v1,v2) -> v1[0] - v2[0]);
+        // 会议结束时间放进最小堆
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        for(int[] interval : intervals){
+            // 当前会议开始时间晚于堆顶会议结束时间，则可以在堆顶会议结束后在同一个房间开
+            if(!pq.isEmpty() && interval[0] >= pq.peek()){ // 等于号不要忘掉！
                 pq.poll();
             }
-            pq.offer(intervals[i]);
+            pq.offer(interval[1]);
         }
         return pq.size();
     }
