@@ -10,7 +10,7 @@ import  sword_to_offer.ListNode;
  * （3）最后将P1和P2都指向链表的首节点，P1先走n步，然后P1和P2同时向前遍历，那么当P2到达环的
  * 入口节点时，P1已经绕着环走了一圈并回到了入口，即它们会在环的入口节点处相遇。
  * (牛客cyc的方法：当第一次P1和P2相遇时，让P1从头开始遍历，并且速度变为一次一步，同时P2
- * 从相遇点开始遍历，P1、P2再次相遇的地方即为环的入口节点，虽然是对的，但不知如何验证）
+ * 从相遇点开始遍历，P1、P2再次相遇的地方即为环的入口节点，这个方法代码更简洁，见leetcode142）
  */
 public class Problem23 {
       private class ListNode {
@@ -34,7 +34,7 @@ public class Problem23 {
             p2 = p2.next;
         }while (p1 != null && p1.next != null && p1 != p2);
         if (p1 != p2){
-            return null; // p1到了尾节点还没有和p2相遇，说明链表中没有环
+            return null; // p1到了尾节点还没有和p2相遇，说明链表中没有环，直接返回空节点
         }
         // 第二步，计算环中含有的节点数目
         ListNode start = p1;
