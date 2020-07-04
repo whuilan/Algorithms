@@ -25,10 +25,10 @@ public class Solution215 {
             else if (j > N - k){
                 hi = j - 1;
             }else {
-                return nums[j]; // 刚好等于k-1就直接返回
+                return nums[j]; // 刚好等于N-k就直接返回
             }
         }
-        return nums[lo]; // 没有找到j=k-1，但是这个元素一定是存在的，所以就是最后一次的lo=hi
+        return nums[lo]; // 没有找到j=N-k，但是这个元素一定是存在的，所以就是最后一次的lo=hi
     }
 
     // 大于nums[lo]的放左边，小于nums[lo]的放右边

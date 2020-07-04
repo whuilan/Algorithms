@@ -13,11 +13,12 @@ public class Solution141 {
         }
         // 遍历之前就让p1先走一步，p2走两步，这样才能满足循环的条件p1 != p2
         ListNode p1 = head.next, p2 = head.next.next;
+        // 注意判断循环终止的条件，要加上p2.next != null， 不要忘了！
         while(p2 != null && p2.next != null && p1 != p2){
             p1 = p1.next;
             p2 = p2.next.next;
         }
         // 循环终止后根据p1和p2是否相等判断链表是否有环
-        return p1 == p2 ? true : false;
+        return p1 == p2;
     }
 }
