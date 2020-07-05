@@ -1,23 +1,12 @@
 package sword_to_offer;
 
 /**
- * 面试题3，数组中重复的数字，时间复杂度为O(n)，空间复杂度为O(1)
+ * 面试题3，数组中重复的数字
+ * 核心：将值为i的元素调整到第i个位置上，虽然用到了两重循环，但每个数字最多只需要两次比较就能
+ * 找到属于它自己的位置，因此时间复杂度还是O(1)
+ * 时间复杂度为O(N),空间复杂度为O(1)，加入对非法输入的检测
  */
 public class Problem3 {
-    // 法一：暴力比较，时间复杂度为N^2，另外少了对非法输入的检测
-//    public boolean duplicate(int numbers[],int length,int [] duplication) {
-//        for(int i = 0; i < length; i++){
-//            for(int j = i + 1; j < length; j++){
-//                if(numbers[i] == numbers[j]){
-//                    duplication[0] = numbers[i];
-//                    return true;
-//                }
-//            }
-//        }
-//        return false;
-//    }
-
-    // 法二：将值为i的元素调整到第i个位置上,时间复杂度为O(N),空间复杂度为O(1)，加入对非法输入的检测
     public boolean duplicate(int numbers[],int length,int [] duplication) {
         if(numbers == null || length <= 0){
             return false;
@@ -48,7 +37,7 @@ public class Problem3 {
             return false;
         }
         for(int i = 0; i < length; i++){
-            while(i != numbers[i]){
+            while(i != numbers[i]){ // 注意这里是while，交换一次后只能保证num[i]到了该去的位置，但是不能保证i处的元素就是i!
                 if(numbers[i] == numbers[numbers[i]]){
                     duplication[0] = numbers[i];
                     return true;
