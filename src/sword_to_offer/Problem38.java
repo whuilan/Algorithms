@@ -5,6 +5,8 @@ import java.util.Collections;
 
 /**
  * P197字符串的排列
+ * 时间复杂度都不可能低于 O(N!)，因为穷举整棵决策树是无法避免的。这也是回溯算法的一个特点，不
+ * 像动态规划存在重叠子问题可以优化，回溯算法就是纯暴力穷举，复杂度一般都很高。
  */
 public class Problem38 {
     public ArrayList<String> Permutation(String str) {
