@@ -29,16 +29,14 @@ public class Solution124 {
         return maxSum;
     }
 
+    // 代码好简洁！主体就4行！
     private int postOrder(TreeNode root){
         if (root == null){
             return 0;
         }
         int leftMax = Math.max(0, postOrder(root.left));
         int rightMax = Math.max(0, postOrder(root.right));
-        int curSum = root.val + leftMax + rightMax;
-        if (curSum > maxSum){
-            maxSum = curSum;
-        }
+        maxSum = Math.max(maxSum, root.val + leftMax + rightMax);
         return root.val + Math.max(leftMax, rightMax);
     }
 }
