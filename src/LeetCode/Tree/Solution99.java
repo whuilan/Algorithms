@@ -16,6 +16,7 @@ package LeetCode.Tree;
  *      覆盖就行。
  */
 public class Solution99 {
+    // 这也是个需要注意的点，pre代表上一个节点，并且在遍历过程中不断更新
     TreeNode pre = new TreeNode(Integer.MIN_VALUE);
     TreeNode pOne;
     TreeNode pTwo;
@@ -39,7 +40,7 @@ public class Solution99 {
             // pTwo会被更新，始终是最后一次遇到逆序对时的当前节点。
             pTwo = root;
         }
-        pre = root;
+        pre = root; // 更新pre!这一步老是忘！review的时候第三遍看还是忘
         inOrder(root.right);
     }
 

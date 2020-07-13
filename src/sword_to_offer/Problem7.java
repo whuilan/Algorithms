@@ -5,6 +5,8 @@ import java.util.Map;
 
 /**
  * 重建二叉树
+ * 容易出错的地方：递归方法的参数容易漏写inStart，然后计算leftTreeSize时减了preStart，已经错了两次
+ * 啦！计算左子树有多少个元素是在中序遍历序列中计算的，咋用了中序的idx减前序的start呢？？粗心！
  */
 public class Problem7 {
     public class TreeNode{
