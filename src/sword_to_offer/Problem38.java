@@ -19,19 +19,20 @@ public class Problem38 {
         return list;
     }
 
-    private void Permutation(char[] chars, int i, ArrayList<String> list){
-        if (i == chars.length - 1){
+    private void Permutation(char[] chars, int start, ArrayList<String> list){
+        if (start == chars.length - 1){
             String str = String.valueOf(chars);
             list.add(str);
             return;
         }
-        for (int j = i; j < chars.length; j++){
-            if (j > i && chars[j] == chars[i]){  // 避免和i后面的相同值交换
+        for (int i = start; i < chars.length; i++){
+            // 避免和i后面的相同值交换
+            if (i > start && chars[i] == chars[start]){
                 continue;
             }
-            swap(chars, i, j);
-            Permutation(chars, i + 1, list);
-            swap(chars, i, j); // 需要保证i处的字符确定再与下一个j+1的字符交换，因此每一次循环最后需要交换回来
+            swap(chars, start, i);
+            Permutation(chars, start + 1, list);
+            swap(chars, start, i); // 需要保证i处的字符确定再与下一个j+1的字符交换，因此每一次循环最后需要交换回来
         }
     }
 

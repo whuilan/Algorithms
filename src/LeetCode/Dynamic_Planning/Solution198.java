@@ -15,7 +15,7 @@ public class Solution198 {
         if (nums == null || nums.length == 0){
             return 0;
         }
-        // 易忘，只有一个元素就直接返回！
+        // 易忘，只有一个元素就直接返回！写完程序后要考虑特殊输入的！
         if(nums.length == 1){
             return nums[0];
         }
