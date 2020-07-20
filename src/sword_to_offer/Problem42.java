@@ -3,6 +3,7 @@ package sword_to_offer;
 /**
  * P218连续子数组的最大和，时间复杂度为O(n)（而用枚举法列出所有的n(n+1)/2个子数组
  * 再分别求和进行比较的时间复杂度为O(n^2)
+ * 同leetcode53最大子序和，还可以用动态规划的解法，与本解法异曲同工
  */
 public class Problem42 {
     public static int FindGreatestSumOfSubArray(int[] array) throws Exception {
