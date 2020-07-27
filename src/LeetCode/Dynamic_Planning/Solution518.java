@@ -53,7 +53,7 @@ public class Solution518 {
     // 【选】：只需要将状态转移方程改为dp[i][j] = dp[i][j-coins[i-1]]，第一个坐标是i不是i-1！巧妙！这
     // 就是和0-1背包不一样的地方。因为选coins[i−1]时，总的金额减少到j-coins[i-1],但由于是完全背包问题，
     // 每个物品可以选无限次，所以，剩下的j-coins[i-1]还是可以重新选择当前的物品，即coins[i-1]！
-    // 所以综合这两种情况，状态转移方程应该为：p[i][j] = dp[i - 1][j] + dp[i][j-coins[i-1]];
+    // 所以综合这两种情况，状态转移方程应该为：dp[i][j] = dp[i - 1][j] + dp[i][j-coins[i-1]];
     public static int change2(int amount, int[] coins) {
         if (amount == 0){
             return 1;  // 只要需要凑的金额为0，默认啥不选也是一种凑法！
