@@ -18,7 +18,7 @@ public class Solution33 {
         int lo = 0, hi = nums.length - 1;
         while (lo < hi){
             int mid = lo + (hi - lo) / 2;
-            // 假如在找最小数字的二分查找过程中找到了target就直接返回，这一步不要掉
+            // 假如在找最小数字的二分查找过程中找到了target就直接返回，这一步不要掉（又忘）
             if (nums[mid] == target){
                 return mid;
             }
@@ -29,15 +29,12 @@ public class Solution33 {
             }
         }
         // 执行完上述while循环后，lo即为数组中最小元素的索引
-        int N = nums.length;
-        if (target <= nums[N - 1]){
-            return binarySearch(nums, lo, N - 1, target);
-        }
-        return  binarySearch(nums, 0, lo - 1, target);
+        int N = nums.length; // 有坑喔，这时候hi已经等于lo了，不再是最后一个索引了！
+        return  target > nums[N-1] ? binarySearch(nums, 0, lo - 1, target)
+                : binarySearch(nums, lo, N-1, target);
     }
 
-    private int binarySearch(int[] nums, int start, int end, int target){
-        int lo = start, hi = end;
+    private int binarySearch(int[] nums, int lo, int hi, int target){
         while (lo <= hi){
             int mid = lo + (hi - lo) / 2;
             if (nums[mid] < target){

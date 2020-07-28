@@ -9,14 +9,54 @@ public class Problem53 {
         if (array == null || array.length == 0){
             return 0;
         }
-        int firstK = getFirstK(array, k);
-        int lastK = getLastK(array, k);
-        if (firstK == -1 && lastK == -1){
-            return 0;
-        }
-        return lastK - firstK + 1;
+        int firstK = firstIndex(array, k);
+        int lastK = lastIndex(array, k);
+        return firstK == -1 ? 0 : lastK - firstK + 1;
     }
 
+    private int firstIndex(int[] nums, int target){
+        int lo = 0, hi = nums.length - 1;
+        while(lo <= hi){
+            int mid = lo + (hi - lo) / 2;
+            if(nums[mid] < target){
+                lo = mid + 1;
+            }else if(nums[mid] > target){
+                hi = mid - 1;
+            }else{
+                // 不返回，而是继续在左侧查找
+                hi = mid - 1;
+            }
+        }
+        // 检查越界
+        if(lo >= nums.length || nums[lo] != target){
+            return -1;
+        }
+        // 返回查找区间左端点
+        return lo;
+    }
+
+    private int lastIndex(int[] nums, int target){
+        int lo = 0, hi = nums.length - 1;
+        while(lo <= hi){
+            int mid = lo + (hi - lo) / 2;
+            if(nums[mid] < target){
+                lo = mid + 1;
+            }else if(nums[mid] > target){
+                hi = mid - 1;
+            }else{
+                // 不返回，继续在右侧查找
+                lo = mid + 1;
+            }
+        }
+        // 检查越界情况
+        if(hi < 0 || nums[hi] != target){
+            return -1;
+        }
+        // 返回查找区间右端点
+        return hi;
+    }
+
+    // 最开始的查找左右边界的方法，也挺容易理解的~
     private int getFirstK(int[] a, int k){
         int lo = 0, hi = a.length - 1;
         while (lo <= hi){
