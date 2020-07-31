@@ -12,6 +12,7 @@ import java.util.*;
  * 改进：1 排序小数组(5-15)时切换到插入排序
  * 2 三取样切分
  * 3 熵最优的排序，适用于含有大量重复元素的数组排序，又称为荷兰国旗问题
+ * 打乱顺序见：leetcode215
  */
 public class Quick {
     private static Random random = new Random();

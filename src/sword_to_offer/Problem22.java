@@ -16,6 +16,29 @@ public class Problem22 {
         }
     }
 
+    public ListNode getKthFromEnd(ListNode head, int k) {
+        // 非法输入检查
+        if(head == null || k <= 0){
+            return null;
+        }
+        // 定义一前一后两个指针
+        ListNode front = head, back = head;
+        int i = 1;
+        while(front != null && i <= k- 1){
+            front = front.next;
+            i++; // 这一步别忘了！
+        }
+        // 还没有走完k-1步就走到尾节点了，说明k大于链表长度，没有符合题意的节点
+        if(front == null){
+            return null; // k大于链表长度
+        }
+        while(front.next != null){
+            front = front.next;
+            back = back.next;
+        }
+        return back;
+    }
+
     public ListNode FindKthToTail(ListNode head,int k) {
         if (head == null || k <= 0){
             return null;
@@ -23,7 +46,7 @@ public class Problem22 {
         // 第一个指针先走k-1步
         ListNode pointerOne = head;
         for (int i = 1; i <= k - 1; i++){
-            if (pointerOne.next != null){  // 至少这k-1步还没走到尾节点
+            if (pointerOne.next != null){  // 至少这k-1步还没走到尾节点（还有一种写法见leetcode,赶紧更容易理解？）
                 pointerOne = pointerOne.next;
             }else {
                 return null;   // 说明链表中的节点整数小于k
@@ -42,13 +65,14 @@ public class Problem22 {
         ListNode first = new ListNode(1);
         ListNode node_2 = new ListNode(2);
         ListNode node_3 = new ListNode(3);
-        ListNode node_4 = new ListNode(3);
-        // ListNode node_5 = new ListNode(4);
+        ListNode node_4 = new ListNode(4);
+        ListNode node_5 = new ListNode(5);
         first.next = node_2;
         node_2.next = node_3;
         node_3.next = node_4;
+        node_4.next = node_5;
         Problem22 problem22 = new Problem22();
-        ListNode KthToTail = problem22.FindKthToTail(first, 5);
+        ListNode KthToTail = problem22.getKthFromEnd(first, 6);
         System.out.println("finish");
     }
 }

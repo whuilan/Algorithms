@@ -22,7 +22,7 @@ public class Problem23 {
         }
     }
 
-    public ListNode EntryNodeOfLoop(ListNode pHead)
+    public ListNode EntryNodeOfLoop1(ListNode pHead)
     {
         if (pHead == null || pHead.next == null){ // 显然没有环
             return null;
@@ -59,26 +59,27 @@ public class Problem23 {
         return p1;
     }
 
-    public ListNode EntryNodeOfLoop2(ListNode pHead)
-    {
-        if (pHead == null || pHead.next == null){
+    public ListNode EntryNodeOfLoop(ListNode head) {
+        if(head == null || head.next == null){
             return null;
         }
-        ListNode p1 = pHead, p2 = pHead;
-        // 找出p1和p2相遇的节点，注意要用do..while循环，不然刚开始p1,p2相等进不去while循环
-        do {
-            p1 = p1.next.next;
-            p2 = p2.next;
-        } while (p1 != null && p1.next != null && p1 != p2);  // 注意循环终止条件
-        if (p1 != p2){
-            return null; // 说明链表中没有环
+        ListNode fast = head.next.next, slow = head.next; // 注意slow也要先走一步的！
+        // 第一次相遇
+        while(fast != null && fast.next != null && fast != slow){
+            fast = fast.next.next;
+            slow = slow.next;
         }
-        p1 = pHead;
-        while (p1 != p2){
-            p1 = p1.next;
-            p2 = p2.next;
+        if(fast != slow){
+            return null; // 没有环
         }
-        return p1;
+        // 第二次相遇，将快指针重置到头节点，然后以一次一步的速度和慢指针一起向前遍历，它们会在
+        // 入口节点相遇
+        fast = head;
+        while(fast != slow){
+            fast = fast.next;
+            slow = slow.next;
+        }
+        return slow;
     }
 
     public static void main(String[] args){
