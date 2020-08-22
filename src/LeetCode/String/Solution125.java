@@ -7,6 +7,7 @@ public class Solution125 {
         }
         int lo = 0, hi = s.length() - 1;
         while (lo < hi){
+            // 忽略非字母和数字字符
             while (lo < hi && !Character.isLetterOrDigit(s.charAt(lo))){
                 lo++;
             }
@@ -14,7 +15,8 @@ public class Solution125 {
                 hi--;
             }
             if (lo < hi){
-                if (Character.toUpperCase(s.charAt(lo)) != Character.toUpperCase(s.charAt(hi))){
+                // 忽略大小写字母：都转换为小写字母来比较
+                if (Character.toLowerCase(s.charAt(lo)) != Character.toLowerCase(s.charAt(hi))){
                     return false;
                 }
                 lo++;
@@ -24,7 +26,7 @@ public class Solution125 {
         return true;
     }
 
-    private boolean isNumOrChar(char c){
+    private boolean isCharOrNum(char c){
         if((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z')
                 || (c >= 'A' && c <= 'Z')){
             return true;

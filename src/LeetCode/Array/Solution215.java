@@ -12,7 +12,7 @@ import java.util.Random;
  *  法二：最小堆，维护一个含有k个元素的最小堆，题目问的就是堆顶元素，时间复杂度O(nlogk)
  */
 public class Solution215 {
-    private Random random = new Random();
+    private static Random random = new Random();
 
     public int findKthLargest(int[] nums, int k) {
         int N = nums.length;
@@ -74,6 +74,7 @@ public class Solution215 {
 
     public static void main(String[] args){
         int[] nums = {1,2};
+        int n = new Random().nextInt() % 100;
         Solution215 solution215 = new Solution215();
         int KthNum = solution215.findKthLargest(nums, 1);
         System.out.println(KthNum);

@@ -6,6 +6,27 @@ import java.util.HashMap;
  * 无重复的最小子串（同剑指48）
  */
 public class Solution3 {
+    // 写法一，刷剑指时候的写法
+    public static int lengthOfLongestSubstring1(String s) {
+        if (s == null || s.length() == 0){
+            return 0;
+        }
+        // 用map来保存已经遍历过的字符及其索引位置
+        HashMap<Character, Integer> map = new HashMap<>();
+        // 设置一个变量来保存最大长度，初始化为0，随着遍历过程而改变
+        int maxLen = 0;
+        // i,j分表表示滑动窗口的左边界和右边界指针
+        for (int i = 0, j = 0; j < s.length(); j++){
+            char c = s.charAt(j);
+            if (map.containsKey(c) && map.get(c) >= i){
+                i = map.get(c) + 1;
+            }
+            map.put(c, j);
+            maxLen = Math.max(maxLen, j - i + 1);
+        }
+        return maxLen;
+    }
+
     public int lengthOfLongestSubstring(String s) {
         if(s == null || s.length() == 0){
             return 0;

@@ -11,8 +11,8 @@ import java.util.Map;
  * 时间复杂度为O(n)
  */
 public class Problem48 {
-
-    public static int lengthOfLongestSubstring(String s) {
+    // 法一：这个map记录的是字符-索引对
+    public static int lengthOfLongestSubstring1(String s) {
         if (s == null || s.length() == 0){
             return 0;
         }
@@ -32,9 +32,32 @@ public class Problem48 {
         return maxLen;
     }
 
+    // 法二：用滑动窗口通用框架，map记录的是当前的窗口中字符-出现次数
+    public int lengthOfLongestSubstring2(String s) {
+        if (s == null || s.length() == 0){
+            return 0;
+        }
+        HashMap<Character, Integer> window = new HashMap<>();
+        int maxLen = 0;
+        int left = 0, right = 0;
+        while (right < s.length()){
+            char r = s.charAt(right);
+            right++;
+            window.put(r, window.getOrDefault(r, 0) + 1);
+            // 当前字符为重复字符
+            while (window.get(r) > 1){
+                char l = s.charAt(left);
+                left++;
+                window.put(l, window.get(l)-1);
+            }
+            maxLen = Math.max(maxLen, right - left);
+        }
+        return maxLen;
+    }
+
     public static void main(String[] args){
         String s = "pww";
-        int maxLen = lengthOfLongestSubstring(s);
+        int maxLen = lengthOfLongestSubstring1(s);
         System.out.println(maxLen);
     }
 }

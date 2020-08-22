@@ -25,7 +25,8 @@ public class Solution234 {
     private boolean palindrome(List<Integer> list){
         int lo = 0, hi = list.size() - 1;
         while (lo < hi){
-            if (!list.get(lo).equals(list.get(hi))){ // list.get(lo) != list.get(hi)，用这个会出错，因为是两个Integer比较！应该是if(!vals.get(front).equals(vals.get(back)))
+            // list.get(lo) != list.get(hi)，用这个会出错，因为是两个Integer比较！
+            if (!list.get(lo).equals(list.get(hi))){
                 return false;
             }
             lo++;
@@ -34,11 +35,11 @@ public class Solution234 {
         return true;
     }
 
-    // 法二：优化空间复杂度为O(1)，想到了用两个指针，但一快一慢或者一头一尾都没有办法比较
-    // 又根据回文的特点想到了剑指上的反转链表，可以反转后半部分链表，然后两个指针分别从前半
-    // 部分和后半部分的第一个节点开始比较，如果是回文子串，两个节点应该相等，官网也解法二也是这样的！
-    // 我可太棒啦！但是这会更改输入，如果不能更改输入的话，再把后半部分反转回来。
-    // 时间复杂度为O(n)，空间复杂度为O(1)
+//     法二：优化空间复杂度为O(1)，想到了用两个指针，但一快一慢或者一头一尾都没有办法比较
+//     又根据回文的特点想到了剑指上的反转链表，可以反转后半部分链表，然后两个指针分别从前半
+//     部分和后半部分的第一个节点开始比较，如果是回文子串，两个节点应该相等，官网也解法二也是这样的！
+//     我可太棒啦！但是这会更改输入，如果不能更改输入的话，再把后半部分反转回来。
+//     时间复杂度为O(n)，空间复杂度为O(1)
     public boolean isPalindrome2(ListNode head) {
         if (head == null || head.next == null){
             return true;

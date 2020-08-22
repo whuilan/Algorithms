@@ -28,7 +28,7 @@ public class Solution5 {
         return s.substring(begin, begin+longestLen);
     }
 
-    // 验证子串 s[left..right] 是否为回文串
+    // 头尾指针相向运动：验证子串 s[left..right] 是否为回文串
     private boolean isPalindrome(char[] c, int start, int end){
         while (start < end){
             if (c[start] != c[end]){
@@ -145,7 +145,8 @@ public class Solution5 {
             left--;
             right++;
         }
-        // 终止循环时left和right两端的字符要么不相等要么超出索引，因此不应该包含在返回回文子串的范围中
+        // 终止循环时left和right两端的字符要么不相等要么超出索引，
+        // 因此不应该包含在返回回文子串的范围中
         return s.substring(left+1, right);
     }
 

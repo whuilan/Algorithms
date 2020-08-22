@@ -6,7 +6,7 @@ import java.util.Stack;
  * 字符串解码：给定一个经过编码的字符串，返回它解码后的字符串。
  * 难点：中括号中还嵌套了中括号时的解码
  */
-public class Solution294 {
+public class Solution394 {
     public static String decodeString(String s) {
         StringBuilder res = new StringBuilder();
         Stack<Integer> repTimes = new Stack<>();
@@ -48,7 +48,7 @@ public class Solution294 {
     }
 
     public static void main(String[] args){
-        String encodedStr = "3[a]2[bc]";
+        String encodedStr = "3[a2[c]]";
         String rawStr = decodeString(encodedStr);
         System.out.println(rawStr);
     }
